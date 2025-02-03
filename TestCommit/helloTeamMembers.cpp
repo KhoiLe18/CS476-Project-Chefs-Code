@@ -13,6 +13,7 @@ int main() {
 	string membersList[6] = {member1, member2, member3, member4, member5, member6};
 
 	for (int i = 0; i < 6; i++) {
+		cout << "Team members: " << "\n";
 		cout << (membersList[i]) << "\n";
 	}
 	
