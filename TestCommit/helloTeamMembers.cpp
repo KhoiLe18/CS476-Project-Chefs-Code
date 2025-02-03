@@ -8,7 +8,7 @@ int main() {
 	member1 = "Khoi Le";
 	member2 = "Alia Sayeed :)";
 	member3 = "Nairit Patel";
-	member4 = "Kavya Parakh";
+	member4 = "Kavya Parakh"
 	string membersList[6] = {member1, member2, member3, member4, member5, member6};
 
 	for (int i = 0; i < 6; i++) {
