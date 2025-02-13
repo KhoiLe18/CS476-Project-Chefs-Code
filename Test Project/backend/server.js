@@ -1,6 +1,5 @@
-require('dotenv').config();
-
 // backend/server.js
+require('dotenv').config(); // Load environment variables first
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('express').json;
@@ -18,7 +17,6 @@ app.use(bodyParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/recipes', recipeRoutes);
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
