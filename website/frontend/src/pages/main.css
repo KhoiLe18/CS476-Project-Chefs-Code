@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.hero{
+    width: 100%;
+    height: 350px;
+    background: url(choppedboard.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
+    color: #fff;
+    text-align: center;
+    padding: 40px 0;
+    
+}
+
+.hero h5{
+    font-size: 35px;
+    font-family: "Georgia";
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.hero h4{
+    font-size: 15px;
+    font-family: Arial;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.hero h3{
+    font-size: 14px;
+    font-family: Arial;
+    margin-bottom: 3px;
+}
+
+.recipes {
+    padding: 20px;
+}
+
+.recipes h2{
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+
+}
+
+.hero h1{
+    font-size: 14px;
+    font-family: Arial;
+
+}
+
+
+.search-box{
+    max-width: 1400px;
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box input{
+    width: 45%;
+    padding: 8px;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: black;
+}
+
+
+
+/* media query */
+@media only screen and (max-width: 768px){
+    .hero h5 {
+        font-size: 20px;
+    }
+    .hero h4{
+        font-size: 12px;
+    }
+    .hero h3{
+        font-size: 10px;
+    }
+    .hero h1{
+        font-size: 10px;
+    }
+}
