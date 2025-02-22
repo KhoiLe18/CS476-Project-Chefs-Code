@@ -1,4 +1,4 @@
-const API = "dddb71901a7c4ab8a2c35f6db17dc7cf";
+const API = "0652000f796c48bdb6a8926b2ea84ef2";
 
 async function RecipeFinder() 
 {
