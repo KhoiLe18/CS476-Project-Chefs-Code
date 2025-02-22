@@ -1,62 +1,43 @@
 const express = require('express');
 const axios = require('axios');
-const ejs = require('ejs');
-
+const cors = require('cors'); // Import CORS
 const app = express();
+
+// Spoonacular API key
 const api_Key = "0652000f796c48bdb6a8926b2ea84ef2";
 
-// Middleware for parsing url-encoded data
-app.use(express.urlencoded({ extended: false }));
-// Middleware to handle JSON responses (in case you use JSON for API requests)
-app.use(express.json());
+// Middleware for parsing JSON and form data
+app.use(express.json()); // Handle JSON data
+app.use(express.urlencoded({ extended: false })); // Handle form data
+app.use(cors()); // Enable CORS for all origins (frontend can communicate with this backend)
 
-// Set views directory and EJS as view engine
-app.set('view engine', 'ejs');
-
-// Route to serve the homepage with the search form
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-// API route to search for recipes based on ingredients
+// Route to handle search requests
 app.post('/api/search', async (req, res) => {
   const { query, cuisines, dietaryRequirements } = req.body;
 
-  // Construct query params to pass to Spoonacular API
-  let url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${api_Key}`;
-
-  // Add optional filters (cuisines and dietary requirements) if provided
-  if (cuisines && cuisines.length > 0) {
-    url += `&cuisine=${cuisines.join(',')}`;
-  }
-  if (dietaryRequirements && dietaryRequirements.length > 0) {
-    url += `&diet=${dietaryRequirements.join(',')}`;
-  }
-
   try {
-    const response = await axios.get(url);
+    // Construct the API request to Spoonacular with ingredients and filters
+    const response = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch`, {
+        params: {
+          query: query,
+          cuisine: cuisines.join(','),
+          diet: dietaryRequirements.join(','),
+          apiKey: api_Key
+        }
+      }
+    );
+
     const recipes = response.data.results;
-    res.json(recipes);  // Send JSON response with the list of recipes
+    res.json(recipes); // Return the recipes data to the frontend
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error fetching recipes from API' });
+    console.error('Error fetching recipes:', error);
+    res.status(500).json({ error: 'Failed to fetch recipes' });
   }
 });
 
-// API route to get detailed information of a single recipe
-app.get('/api/recipe/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_Key}`);
-    const recipe = response.data;
-    res.json(recipe);  // Send JSON response with recipe details
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error fetching recipe details from API' });
-  }
-});
-
+// Set up the backend to listen on port 3000
 const port = 3000;
 app.listen(port, () => {
-  console.log('Server is running on port ' + port);
+  console.log(`Server is running on http://localhost:${port}`);
 });
