@@ -1,43 +1,28 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors'); // Import CORS
-const app = express();
+const ejs = require ('ejs');
 
-// Spoonacular API key
+const app = express();
 const api_Key = "0652000f796c48bdb6a8926b2ea84ef2";
 
-// Middleware for parsing JSON and form data
-app.use(express.json()); // Handle JSON data
-app.use(express.urlencoded({ extended: false })); // Handle form data
-app.use(cors()); // Enable CORS for all origins (frontend can communicate with this backend)
+app.use(express.urlencoded({extended: false}));
 
-// Route to handle search requests
-app.post('/api/search', async (req, res) => {
-  const { query, cuisines, dietaryRequirements } = req.body;
+app.get('/', (request, res) => {res.render('index')});
 
-  try {
-    // Construct the API request to Spoonacular with ingredients and filters
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch`, {
-        params: {
-          query: query,
-          cuisine: cuisines.join(','),
-          diet: dietaryRequirements.join(','),
-          apiKey: api_Key
-        }
-      }
-    );
-
+app.post('/search', async(req, res) => {
+    const {query} = req.body
+    const response = await axios.get(https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${api_Key})
     const recipes = response.data.results;
-    res.json(recipes); // Return the recipes data to the frontend
-  } catch (error) {
-    console.error('Error fetching recipes:', error);
-    res.status(500).json({ error: 'Failed to fetch recipes' });
-  }
-});
+    res.render('results', {recipes});
+})
 
-// Set up the backend to listen on port 3000
+app.get('/recipe/:id', async(req, res) => {
+    const {id} = req.params;
+    const response = await axios.get(https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_Key})
+    const recipe = response.data;
+    res.render('recipe', {recipe})
+
+})
+
 const port = 3000;
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+ app.listen(port, () => {console.log('Server is running...')});
