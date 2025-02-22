@@ -10,6 +10,7 @@
   "dependencies": {
     "@primevue/themes": "^4.2.5",
     "@tailwindcss/postcss": "^4.0.7",
+    "axios": "^1.7.9",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
     "primeicons": "^7.0.0",
