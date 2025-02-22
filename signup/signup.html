@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef's Code</title>
+    <link rel="stylesheet" type="text/css" href="signup.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+    <div id="container-Signup">
+        <header id="header-auth">
+            <h1>Sign Up</h1>
+        </header>
+
+        <main id="main-center">
+            <form @submit.prevent="validateForm">    
+                <p class="input-field">
+                <label for = "fname">First Name</label>
+                <input type="text" placeholder="Enter first name" v-model="fname" />
+                <p v-if="errors.fname" class="error-text">{{ errors.fname }}</p>
+                </p>
+
+                <p class="input-field">
+                <label for = "lname">Last Name</label>
+                <input type="text" placeholder="Enter last name" v-model="lname" />
+                <p v-if="errors.lname" class="error-text">{{ errors.lname }}</p>
+                </p>
+
+                <p class="input-field">
+                <label for="email">Email</label>
+                <input type="email" v-model="email" placeholder="Enter email" />
+                <p v-if="errors.email" class="error-text">{{ errors.email }}</p>
+                </p>
+
+                <p class="input-field">
+                <label>Password</label>
+                <input type="password" v-model="password" placeholder="Enter password" />
+                <p v-if="errors.password" class="error-text">{{ errors.password }}</p>
+                </p>
+
+                <p class="input-field">
+                <label for="cpassword">Confirm Password</label>
+                <input type="password" v-model="cpassword" placeholder="Re-enter password" />
+                <p v-if="errors.cpassword" class="error-text">{{ errors.cpassword }}</p>
+                </p>
+                <!-- Google reCAPTCHA -->
+                <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+
+            <p class="input-field">
+                <input type="submit" class="form-submit" value="Signup" />
+            </p>
+            </form>
+        </main>
+     
+    </div>
+</div>
+    <script src="js/eventSignup.js"></script>
+</body>
+
+</html>
+

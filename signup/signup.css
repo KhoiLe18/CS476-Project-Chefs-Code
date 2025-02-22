@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    
+    font-family: 'Roboto';
+    background-color: #dfe9ed;
+    margin: 0;
+    padding: 0;
+}
+
+#header-auth{
+    background-color: #255876;
+    color: #f9fafa;
+    grid-column: span 3;
+}
+
+#header-auth h1
+{
+    font-size: 5em ;
+    text-align: center;
+    vertical-align: middle;               
+}
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 35px;
+}
+
+
+section h1{
+    font-size: 2em;
+
+}
+ 
+
+.auth-form {
+    margin-top: 60px;
+   border-style: solid ;
+   background-color: #255876;
+   color: white;
+   border-width: 2px;
+   border-radius: 10px;
+    padding: 10px 20px 40px 20px;
+    width: 80%;
+}
+
+input {
+
+   float: right;
+    
+}
+
+
+.input-field{
+    
+    margin: 20px 10px 30px 20px
+
+}
+ 
+
+
+
+.home {
+    font-size: 15px;
+    float: right;
+    color: #255876;
+    border: 2px solid #255876;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.create-form {
+    margin: 80px;
+   border-style: solid ;
+   background-color: #255876;
+   color: white;
+   border-width: 2px;
+   border-radius: 10px;
+    padding: 10px 20px 40px 20px;
+    width: 300%;
+    height: 280px;
+}
+
+
+
+
+
+
+#user-data{
+    padding: 0px 0px 30px 20px;
+    margin: 20px 0px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #255876;
+   color: white;
+
+}
+
+
+
+#container-Signup{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 150px auto 100px;
+    grid-gap: 5px;
+
+    /* vh: viewport height */
+    min-height: 100vh;
+    
+    /* vw: viewport width */
+    width: 100vw;
+}
+
+#main-left{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#main-center{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#main-right{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.input-field-error{
+    border: 1px solid red;
+}
+
+
+.error-text{
+    color: red;
+    font-style: italic;
+    text-decoration: underline;
+    text-align: right;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+
