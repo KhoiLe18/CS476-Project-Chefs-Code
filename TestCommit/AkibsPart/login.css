@@ -1,0 +1,320 @@
+/* Common CSS styles for all the files begins */
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-image: url("image.png");
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the image fixed when scrolling */
+    background-repeat: no-repeat;
+    background-blend-mode: lighten;
+    font-family: 'DM Serif Text', serif; /* Apply DM Serif Text font to the body */
+}
+
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 150px auto 100px;
+    grid-gap: 5px;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.sect1 {
+    width: 1540px;
+}
+
+#header-auth {
+    background-color: rgb(95, 74, 6);
+    opacity: 0.9;
+    color: lightyellow;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+a {
+    color: lightyellow;
+}
+
+header h1 {
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    font-family: 'Merriweather', serif; /* Apply Merriweather for headings */
+}
+
+#main-left {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#main-center {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#main-right {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#footer-auth {
+    background-color: rgb(95, 74, 6);
+    color: lightyellow;
+    width: 100%;
+    text-align: center;
+    opacity: 0.9;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.auth-form {
+    margin-top: 30px;
+    border: 1px solid rgb(95, 74, 6);
+    opacity: 0.9;
+    border-radius: 60px;
+    padding: 20px 20px 40px 20px;
+    width: 100%;
+    background-color: rgb(95, 74, 6);
+    padding: 40px;
+}
+
+input {
+    float: right;
+    border-radius: 7px;
+    padding: 5px;
+    width: 70%;
+}
+
+.input-field {
+    width: auto;
+    margin: 10px;
+    padding: 3px 3px;
+    color: lightyellow;
+}
+
+textarea {
+    padding: 3px 3px;
+    border-radius: 7px;
+    width: 700px;
+    height: 150px;
+}
+
+.footer-text {
+    margin-top: 35px;
+    font-size: 20px;
+}
+
+/* CSS styles for loginHistory.html begins */
+#joke-box {
+    grid-column: 2/4;
+    background-color: rgb(138, 111, 23);
+    opacity: 0.9;
+}
+
+#container-jokelist {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-rows: 150px auto 100px;
+    grid-gap: 5px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#header-jokelist {
+    background-color: rgb(95,74,6);
+    opacity: 0.9;
+    color: lightyellow;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#main-left-login-history {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#user-info {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+}
+
+#login-sessions {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+}
+
+#main-right-login-history {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#footer-login-history {
+    background-color: rgb(95,74,6);
+    color: lightyellow;
+    opacity: 0.9;
+    width: 100%;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.logout {
+    font-size: 15px;
+    float: right;
+    color: lightyellow;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 7px;
+    margin-right: 20px;
+}
+
+#header-login-history h1 {
+    font-size: 300%;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    font-family: 'Merriweather', serif; /* Apply Merriweather for headings */
+}
+
+.update-info {
+    background-color: #40771b; color: rgb(0, 0, 0); padding: 15px 25px;
+    border-radius: 5px;
+}
+
+img {
+    width: 100%;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+h2 {
+    color: lightyellow;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+section {
+    color: lightyellow;
+}
+
+img {
+    width: 100%;
+    border: 1px solid rgb(95,74,6);
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+aside {
+    padding-left: 30px;
+}
+
+#user-data {
+    padding: 0px 0px 30px 20px;
+    margin: 20px 0px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+}
+
+#user-data {
+    height: 150px;
+    padding: 10px;
+    width: 70%;
+}
+
+.session {
+    margin: 10px 0px;
+    border: 1px solid rgb(95, 74, 6);
+    border-radius: 10px;
+    width: 100%;
+    color: lightyellow;
+    margin-left: 17px;
+    padding-left: 10px;
+    opacity: 0.9;
+}
+
+header, section, article {
+    border: 1px solid rgb(95,74,6);
+    opacity: 0.9;
+    margin: 10px 2px;
+    margin-bottom: 2px;
+    padding: 10px;
+    background-color: rgb(95,74,6);
+    border-radius: 7px;
+}
+
+.input-field-title {
+    width: auto;
+    margin: 10px;
+    padding: 3px 3px;
+    padding: 10px;
+    color: lightyellow;
+    width: 70%;
+    width: 700px;
+}
+
+.right {
+    color: rgb(95,74,6);
+    opacity: 0.9;
+    float: right;
+    width: fit-content;
+}
+
+.input-rate {
+    float: right;
+    margin: 0px;
+}
+
+input[type=number] {
+    width: 50px;
+    display: inline-block;
+    border: 2px solid black;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.error {
+    color: rgb(31, 26, 5);
+}
+
+#titlecount {
+    color: rgb(31, 26, 5);
+}
+
+#jokecount {
+    color: rgb(31, 26, 5);
+}
+
+.error-box {
+    border: 5px rgb(31, 26, 5) solid;
+}
