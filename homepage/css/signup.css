@@ -71,3 +71,17 @@ body {
 .form-submit:hover {
     background-color: #1a4060;
 }
+
+
+footer{
+    background-color: black;;
+    color: white;
+    clear: both;
+    padding: 20px 0;
+}
+
+
+footer p{
+    text-align: center;
+    font-size: 20px;
+}
