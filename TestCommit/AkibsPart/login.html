@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>#RateYourLaughter</title>
+    <link rel="stylesheet" type="text/css" href="login.css" />
+    <script src="js/eventHandlerLogin.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <header id="header-auth">
+            <h1>Login</h1>
+        </header>
+        <main id="main-left">
+
+        </main>
+        <main id="main-center">
+            <form id="login" class="auth-form" action="login.html" method="get">
+                <p class="input-field">
+                    <!-- HTML Todo 1 -->
+                    <label id="uname_msg" class="error"></label>
+                    <br>
+                    <label for="uname">Username:</label> <!-- label for the username input -->
+                    <input type="text" placeholder="Enter the Email Address" name="uname" id="uname" /> <!-- username input box -->
+                    
+                    
+                </p>
+                <p class="input-field">
+                    <!-- HTML Todo 2 -->
+                    <label id="pwd_msg" class="error"></label>
+                    <br>
+                    <label for="pwd">Password:</label><!-- label for the password input -->
+                    <input type="password" placeholder="Enter the Password" name="pwd" id="password" /><!-- password input box -->
+                </p>
+
+                <p class="input-field">
+                    <!-- HTML Todo 3 -->
+
+                    <input class="submit" type="submit" name="Submit" value="Login"><!-- The form should have a submit button and 
+                     necessary form-attributes for redirecting users
+                     to appropriate pages-->
+                </p>
+            </form>
+            <div class="foot-note">
+                <!-- HTML Todo 4 -->
+                    <div id="display"></div>
+                    <a href="signup.html">Do not have an account? Signup</a><!-- add login link -->
+                
+            </div>
+        </main>
+        <main id="main-right">
+
+        </main>
+        <footer id="footer-auth">
+            <p class="footer-text"> Chef's Code</p>
+        </footer>
+    </div>
+    <script src="js/eventRegisterLogin.js"></script>
+    <style>
+        /* Remove underline from all links */
+        a {
+            text-decoration: none;
+        }
+    </style>
+</body>
+
+</html>
