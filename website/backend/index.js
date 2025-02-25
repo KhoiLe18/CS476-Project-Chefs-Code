@@ -1,6 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-const ejs = require ('ejs');
 
 const app = express();
 const api_Key = "0652000f796c48bdb6a8926b2ea84ef2";
