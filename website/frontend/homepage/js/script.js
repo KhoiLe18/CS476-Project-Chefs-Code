@@ -1,3 +1,5 @@
+//import '../../backend/index.js'
+
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("show");
 }
