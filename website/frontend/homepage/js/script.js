@@ -1,4 +1,4 @@
-//import '../../backend/index.js'
+
 
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("show");
@@ -28,79 +28,97 @@ document.addEventListener("DOMContentLoaded", function() {
 //make an event listener to send ingredient, cuisine, and diet input to backend api function
 let searchButton = document.getElementById("subButton");
 
-searchButton.addEventListener("click", async (event) =>{
+searchButton.addEventListener("click", async (event) => {
+    // check the event, try to get the id from there
 
-    //get input in ingredient search bar, and save it in variable ingredients
+    // get input in ingredient search bar, and save it in variable ingredients
     const ingredients = document.getElementById("ingredInput").value;
 
-    //get input from cuiseine drop bar
+    // get input from cuisine drop bar
     const cuisine = document.getElementById("cuisine").value;
 
-    //get input from dietary drop bar
+    // get input from dietary drop bar
     const diet = document.getElementById("diet").value;
 
-    //put all input into an object to send away to the backend api recipe fetch function
+    // put all input into an object to send away to the backend api recipe fetch function
     const requestData = {
         ingredients: ingredients,
         cuisine: cuisine,
         diet: diet
     };
 
-    //console.log(requestData)
-    //set up the options for the post method, which requests data to our end point in the backend called /api in index.js
+    // console.log(requestData)
+    // set up the options for the post method, which requests data to our end point in the backend called /api in index.js
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        //body: JSON.stringify(data)
+        // body: JSON.stringify(data)
         body: JSON.stringify(requestData)
     };
-    fetch('/api', options).then( async response => {
-        //const response = await fetch("/api", options);
+    fetch('/api', options).then(async response => {
+        
         const json = await response.json();
 
         console.log(json.results);
-        //get the div for the found recipes to go in
+        // get the div for the found recipes to go in
         const recipes = document.getElementById("results");
 
-        //if there are no matching recipes, print out the following message
-        if(json.results.length === 0)
-        {
-            recipes.innerHTML = "No recipes found! Make sure your spelling is correct, or try fewer ingredients!";
-        }
+        //console.log(event.target.value, event.target, "EVNETTTT")
 
-        else
-        {
-            //in the div saved in 'recipes', start printing out and displaying the fetched data from our spoonacular API 
-            json.results.forEach( recipe => {
+        // if there are no matching recipes, print out the following message
+        if (json?.results?.length === 0) {
+            recipes.innerHTML = "No recipes found! Make sure your spelling is correct, or try fewer ingredients!";
+        } else {
+            // in the div saved in 'recipes', start printing out and displaying the fetched data from our spoonacular API 
+            json.results.forEach(recipe => {
                 const recipeItem = document.createElement("div");
 
-                //get recipe title and save it in a header
-                const recipeTitle = document.createElement("h3");
-                recipeTitle.textContext = recipe.title;
+                // get recipe title and save it in a header
+                //const recipeTitle = document.createElement("h3");
+                //recipeTitle.textContent = recipe.title;
 
-                //get the recipe's image and save it in an img
+                // get the recipe's image and save it in an img
                 const recipeImage = document.createElement("img");
                 recipeImage.src = recipe.image;
+                recipeImage.alt = recipe.title;
 
-                recipe.alt = recipe.title;
                 const recipeLink = document.createElement("a");
 
-                //this is for the 'view recipe' link: when a user clicks this, the recipe ingredients and instructions will pop up!
-                recipeLink.href = "#";
+                // this is for the 'view recipe' link: when a user clicks this, the recipe ingredients and instructions will pop up!
+                recipeLink.href = "home.html";
                 recipeLink.textContent = recipe.title;
 
-                recipeLink.onclick = async function()
-                {
-                    //console.log(recipe.id);
-                    fetch('/viewRecipe', )
+                
+                recipeLink.onclick = async function (event) {
+                    event.preventDefault();
+                    const options = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ id: recipe.id })
+                    };
+                    fetch('/viewRecipe', options).then(async response => {
+                        const json = await response.json();
+                        console.log("Here are the results!")
+                        console.log(json.instructions);
+
+                        // Save recipe data to localStorage so the details page can access it
+                        localStorage.setItem('recipeDetails', JSON.stringify(json));
+        
+                        // Now navigate to the recipe page
+                        window.location.href = 'recipeDetails.html';
+                    });
                 }
 
-                //Append all of the important recipe bits onto recipeItem, and append recipeItem onto the bottom of out webpage 
+                // Append all of the important recipe bits onto recipeItem, and append recipeItem onto the bottom of our webpage 
+                //recipeItem.appendChild(recipeTitle);
                 recipes.appendChild(recipeItem);
                 recipeItem.appendChild(recipeImage);
-                recipes.appendChild(recipeLink);
+                recipeItem.appendChild(recipeLink);
+                //recipes.appendChild(recipeItem);
             })
         }
     });

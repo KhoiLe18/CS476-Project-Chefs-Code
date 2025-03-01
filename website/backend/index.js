@@ -23,7 +23,7 @@ app.post('/api', async (request, response) => {
     const d = request.body.diet;
     console.log(d);
 
-    const api_key = "0652000f796c48bdb6a8926b2ea84ef2";
+    const api_key = "2fad0aa51e7a4e4398d7dc8fcd94dc66";
 
     //now let's work on the response to send back! This is the part where we use the request data to search for recipes in the spoonacular API :)
 
@@ -42,4 +42,16 @@ app.post('/api', async (request, response) => {
 app.post('/viewRecipe', async (request, response) => {
     console.log("A recipe has been chosen!");
     console.log(request.body);
+
+    const recipe_id = request.body.id;
+    console.log(recipe_id);
+
+    const api = "2fad0aa51e7a4e4398d7dc8fcd94dc66"; 
+    const api_url = `https://api.spoonacular.com/recipes/${recipe_id}/information?apiKey=${api}`;
+    const fetch_response = await fetch(api_url);
+
+    const json = await fetch_response.json();
+    console.log(json);
+
+    response.json(json);
 });
