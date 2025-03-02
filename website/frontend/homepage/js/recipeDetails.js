@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingElement = document.getElementById('loading');
     const recipeContainer = document.getElementById('recipe-container');
     const errorContainer = document.getElementById('error-container');
-    
+    //const IloveMyBF = document.getElementById('IloveMyBF');
     try {
         // Retrieve recipe data from localStorage
         const recipeData = JSON.parse(localStorage.getItem('recipeDetails'));
