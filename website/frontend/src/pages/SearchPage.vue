@@ -59,7 +59,7 @@
 </template>
    
 <script setup>
-
+import ".//js/search.js";
 import { ref } from "vue";
     const selectedCuisines = ref([]);
     const cuisines = ref([
@@ -109,6 +109,6 @@ import { ref } from "vue";
    
 </script>
    
-   
+  
 <style>
 </style>
