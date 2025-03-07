@@ -14,6 +14,8 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
+
+//FOR FETCHING RECIPE MATCHES ACCORDING TO INPUTTED INGREDIENTS, CUISINES, AND DIETARY RESTRICTIONS
 app.post('/api', async (request, response) => {
     //showing that the request has been recieved from the server end; the request has the list of ingredients in a json array! 
     //This will be requested when the 'submit' button is hit on the recipe search page. I used an event listener for this!
@@ -45,6 +47,8 @@ app.post('/api', async (request, response) => {
     response.json(json);
 });
 
+
+//FOR LOADING THE RECIPE DATA SELECTED IN MAIN RECIPE SEARCH PAGE
 app.post('/viewRecipe', async (request, response) => {
     console.log("A recipe has been chosen!");
     console.log(request.body);
