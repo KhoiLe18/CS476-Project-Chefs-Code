@@ -4,8 +4,15 @@ const path = require('path');
 
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
-app.use(express.static(path.join(__dirname, '../../frontend')));
+//app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(express.json());
+
+// Temporarily set adminPage.html as the default page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/adminPage.html'));
+});
+
+app.use(express.static(path.join(__dirname, '../../frontend')));
 
 app.post('/api', async (request, response) => {
     //showing that the request has been recieved from the server end; the request has the list of ingredients in a json array! 
