@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const path = require('path');
 const pool = require('../model/db');
 
-
+/*
 pool.getConnection()
     .then(conn => {
         console.log("Connected to MariaDB!");
@@ -13,7 +13,7 @@ pool.getConnection()
         console.error("Database connection failed:", err);
     });
 
-
+*/
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
 //app.use(express.static(path.join(__dirname, '../../frontend')));
@@ -85,23 +85,25 @@ app.post('/adminLogin', async (req, res) => {
     const password = req.body.password;
     console.log(username);  
     console.log(password);
-/*
+
     try
     {
         //connect to the database
         const conn = await pool.getConnection();
         //make query and put in the username and password sent in from the frontend
-        const query = "SELECT * FROM admin WHERE username = ? AND password = ?";
+        const query = "SELECT * FROM Admins WHERE username = ? AND password = ?";
         const rows = await conn.query(query, [username, password]);
         conn.release();
         
         if (rows.length > 0)
         {
             res.json({success: true, message: "Login successful"});
+            console.log("Credentials Valid!! :)")
         }
         else
         {
             res.json({success: false, message: "Invalid credentials"});
+            console.log("Invalid credentials")
         }
     }
 
@@ -110,5 +112,5 @@ app.post('/adminLogin', async (req, res) => {
         console.error(err);
         res.status(500).json({ success: false, message: "Database query failed" });
     }
-        */
+        
 });

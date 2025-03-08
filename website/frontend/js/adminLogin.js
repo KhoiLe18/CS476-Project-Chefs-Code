@@ -4,10 +4,10 @@ loginButton.addEventListener("click", async (event) => {
 
     // get input in username input bar, and save it in variable username
     const username = document.getElementById("uname").value;
-    console.log(username);
+    //console.log(username);
     // get input from password search bar
     const password = document.getElementById("pwd").value;
-    console.log(password);
+    //console.log(password);
 
     // put all input into an object to send away to the backend api recipe fetch function
     const requestData = {
@@ -25,8 +25,9 @@ loginButton.addEventListener("click", async (event) => {
         // body: JSON.stringify(data)
         body: JSON.stringify(requestData)
     };
+    console.log("Is it working here...?");
     fetch('/adminLogin', options).then(async response => {
-        
+        console.log("Information sent! We should have a response...");
         const json = await response.json();
 
         console.log(json.results);
