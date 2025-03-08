@@ -1,18 +1,7 @@
 const express = require ('express');
 const fetch = require('node-fetch');
 const path = require('path');
-//const pool = require('../model/db');
-
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
-    host: 'fd7a:115c:a1e0::3401:9a65',
-    user: 'remote',  
-    password: 'ChefsCode_476',
-    database: 'chefscode',
-    connectionLimit: 5
-});
-
-//module.exports = pool;
+const pool = require('../model/db');
 
 
 pool.getConnection()
