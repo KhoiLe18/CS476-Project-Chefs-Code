@@ -1,6 +1,29 @@
 const express = require ('express');
 const fetch = require('node-fetch');
 const path = require('path');
+//const pool = require('../model/db');
+
+const mariadb = require('mariadb');
+const pool = mariadb.createPool({
+    host: 'fd7a:115c:a1e0::3401:9a65',
+    user: 'remote',  
+    password: 'ChefsCode_476',
+    database: 'chefscode',
+    connectionLimit: 5
+});
+
+//module.exports = pool;
+
+
+pool.getConnection()
+    .then(conn => {
+        console.log("Connected to MariaDB!");
+        conn.release(); // Always release the connection
+    })
+    .catch(err => {
+        console.error("Database connection failed:", err);
+    });
+
 
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
@@ -64,4 +87,39 @@ app.post('/viewRecipe', async (request, response) => {
     console.log(json);
 
     response.json(json);
+});
+
+
+//FOR ADMIN LOGIN
+app.post('/adminLogin', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log(username);  
+    console.log(password);
+/*
+    try
+    {
+        //connect to the database
+        const conn = await pool.getConnection();
+        //make query and put in the username and password sent in from the frontend
+        const query = "SELECT * FROM admin WHERE username = ? AND password = ?";
+        const rows = await conn.query(query, [username, password]);
+        conn.release();
+        
+        if (rows.length > 0)
+        {
+            res.json({success: true, message: "Login successful"});
+        }
+        else
+        {
+            res.json({success: false, message: "Invalid credentials"});
+        }
+    }
+
+    catch (err)
+    {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+        */
 });

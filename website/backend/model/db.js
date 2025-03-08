@@ -6,3 +6,5 @@ const pool = mariadb.createPool({
     database: 'chefscode',
     connectionLimit: 5
 });
+
+module.exports = pool;
