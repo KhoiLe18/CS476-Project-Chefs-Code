@@ -2,18 +2,8 @@ const express = require ('express');
 const fetch = require('node-fetch');
 const path = require('path');
 const pool = require('../model/db');
+const cors = require('cors');
 
-/*
-pool.getConnection()
-    .then(conn => {
-        console.log("Connected to MariaDB!");
-        conn.release(); // Always release the connection
-    })
-    .catch(err => {
-        console.error("Database connection failed:", err);
-    });
-
-*/
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
 //app.use(express.static(path.join(__dirname, '../../frontend')));
@@ -25,6 +15,8 @@ app.get('/', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, '../../frontend')));
+
+app.use(cors());
 
 
 //FOR FETCHING RECIPE MATCHES ACCORDING TO INPUTTED INGREDIENTS, CUISINES, AND DIETARY RESTRICTIONS
@@ -90,20 +82,22 @@ app.post('/adminLogin', async (req, res) => {
     {
         //connect to the database
         const conn = await pool.getConnection();
+        console.log("Conected to mariaDB...");
         //make query and put in the username and password sent in from the frontend
         const query = "SELECT * FROM Admins WHERE username = ? AND password = ?";
         const rows = await conn.query(query, [username, password]);
+        console.log("Here are the rows: ", rows.length);
         conn.release();
         
         if (rows.length > 0)
         {
             res.json({success: true, message: "Login successful"});
-            console.log("Credentials Valid!! :)")
+            console.log("Credentials Valid!! :)", res.message)
         }
         else
         {
             res.json({success: false, message: "Invalid credentials"});
-            console.log("Invalid credentials")
+            console.log("Invalid credentials", res.message)
         }
     }
 
