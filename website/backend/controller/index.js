@@ -148,7 +148,8 @@ app.get('/api/users', async (req, res) => {
 app.delete('/api/users/:userId', async (req, res) => {
     const userId = req.params.userId;
     
-    try {
+    try 
+    {
         const conn = await pool.getConnection();
         const query = 'DELETE FROM Users WHERE user_id = ?';
         const result = await conn.query(query, [userId]);
