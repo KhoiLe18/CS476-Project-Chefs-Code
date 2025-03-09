@@ -35,11 +35,17 @@ loginButton.addEventListener("click", async (event) => {
     {
       // Redirect or update UI for successful login
       console.log("Login successful!");
+      window.location.href = "adminMainpage.html";
     } 
     else 
     {
       // Show error message
       console.log("Login failed:", json.message);
+
+      const loginMessage = document.getElementById("login-message"); 
+        loginMessage.textContext = "Does this work?";
+        loginMessage.style.display = "block";
+        loginMessage.className = "error";
       
     }
   })
