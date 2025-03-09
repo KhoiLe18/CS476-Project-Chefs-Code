@@ -108,8 +108,3 @@ app.post('/adminLogin', async (req, res) => {
         
 });
 
-
-//FOR ADMIN MAINPAGE
-app.post('/adminMainpage', async (req, res) => {
-
-});
