@@ -27,16 +27,22 @@ loginButton.addEventListener("click", async (event) => {
     //console.log("Is it working here...?");
     fetch('/adminLogin', options).then(async response => {
     console.log("Information sent! We should have a response...");
+
+    //Get the response in json format and save it into variable json. 
+    //The response will let us know if there was a username + password combo match in our database! (check backend for this logic)
     const json = await response.json();
-    console.log(json);  // Log the entire response object first
+    console.log(json);  // Log the entire response object first to see what we're working with
     
     // Handle the response appropriately
+    //if success was sent back as true, then a match was found! Redirect admin user to adminMainpage.html
     if (json.success) 
     {
       // Redirect or update UI for successful login
       console.log("Login successful!");
       window.location.href = "adminMainpage.html";
     } 
+    
+    //In any other case, success = false, so the login has failed. Print out the error message to the user.
     else 
     {
       // Show error message
