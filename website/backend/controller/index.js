@@ -6,15 +6,13 @@ const cors = require('cors');
 
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
-//app.use(express.static(path.join(__dirname, '../../frontend')));
+app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/adminPage.html'));
 });
-
-app.use(express.static(path.join(__dirname, '../../frontend')));
 
 app.use(cors());
 
