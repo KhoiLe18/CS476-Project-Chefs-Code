@@ -10,7 +10,6 @@ signupForm.addEventListener("submit", async (event) =>
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("cpassword").value;
-    const photo = document.getElementById("photo").files[0];
 
     // Validate password match
     if (password !== confirmPassword) {
@@ -18,20 +17,21 @@ signupForm.addEventListener("submit", async (event) =>
         return;
     }
 
-    // Prepare form data
-    const formData = new FormData();
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("email", email);
-    formData.append("password", password);
-    if (photo) {
-        formData.append("photo", photo);
-    }
+    const data = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        cpassword: confirmPassword
+    };
 
     // Set up fetch options
     const options = {
         method: "POST",
-        body: formData
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
     };
 
     try {

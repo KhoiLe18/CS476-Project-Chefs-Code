@@ -110,22 +110,23 @@ app.post('/adminLogin', async (req, res) => {
 
 //For signup
 app.post('/signup', async (req, res) => {
-    const { firstName, lastName, email, password, cpassword } = req.body;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const cpassword = req.body.cpassword;
 
-    // Password match validation (just in case it wasn't validated on the frontend)
-    if (password !== cpassword) {
-        return res.status(400).json({ success: false, message: 'Passwords do not match' });
+
+     // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ success: false, message: 'Invalid email format' });
     }
-
-    // Validate email format
-    //const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    //if (!emailRegex.test(email)) {
-      //  return res.status(400).json({ success: false, message: 'Invalid email format' });
-    //}
 
     try {
         // Check if the email already exists in the database
         const conn = await pool.getConnection();
+
         const query = "SELECT * FROM Users WHERE email = ?";
         const existingUser = await conn.query(query, [email]);
         conn.release();
@@ -135,10 +136,10 @@ app.post('/signup', async (req, res) => {
         }
 
         // Save the user in the database (no hashing, no file upload)
-        const insertQuery = "INSERT INTO Users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        const insertQuery = "INSERT INTO Users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
         const conn2 = await pool.getConnection();
-        const result = await conn2.query(insertQuery, [firstName, lastName, email, password]);
-        conn2.release();
+        const result = await conn.query(insertQuery, [firstName, lastName, email, password]);
+        conn.release();
 
         // Respond with success
         res.json({ success: true, message: 'Signup successful' });
