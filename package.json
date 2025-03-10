@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
+    "db": "^6.0.3",
+    "maria": "^0.0.1-a",
     "mariadb": "^3.4.0",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5"
