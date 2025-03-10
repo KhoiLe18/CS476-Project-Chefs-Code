@@ -1,5 +1,3 @@
-
-
 <template>
     <section class="hero">
         <div class="hero-section">
