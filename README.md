@@ -23,7 +23,7 @@ This role has the ability to moderate other users by deleting user accounts. Thi
   - Allow users to exclude specific ingredients.
 4. **User Preferences:**
   - Support dietary preferences (e.g., vegetarian, gluten-free, etc.).
-	- Support cuisine preferences (e.g., Italian, Mexican, etc.)
+  - Support cuisine preferences (e.g., Italian, Mexican, etc.).
 5. **Recipe Database Management:**
   - Maintain comprehensive metadata for user accounts.
   - Ensure database consistency and efficiency.
