@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/adminPage.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/signup.html'));
 });
 
 app.use(cors());
@@ -108,3 +108,43 @@ app.post('/adminLogin', async (req, res) => {
         
 });
 
+//For signup
+app.post('/signup', async (req, res) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const cpassword = req.body.cpassword;
+
+    // Validate email format (RFC 5322)
+    const emailRegex = /^(?:[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+(?:[a-zA-Z]{2,})|\[(?:(?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d)|IPv6:(?:[a-fA-F0-9:]+))\])$/;
+
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ success: false, message: 'Invalid email format' });
+    }
+
+    try {
+        // Check if the email already exists in the database
+        const conn = await pool.getConnection();
+
+        const query = "SELECT * FROM Users WHERE email = ?";
+        const existingUser = await conn.query(query, [email]);
+        conn.release();
+
+        if (existingUser.length > 0) {
+            return res.status(400).json({ success: false, message: 'Email already exists' });
+        }
+
+        // Save the user in the database (no hashing, no file upload)
+        const insertQuery = "INSERT INTO Users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+        const conn2 = await pool.getConnection();
+        const result = await conn.query(insertQuery, [firstName, lastName, email, password]);
+        conn.release();
+
+        // Respond with success
+        res.json({ success: true, message: 'Signup successful' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'An error occurred. Please try again' });
+    }
+});
