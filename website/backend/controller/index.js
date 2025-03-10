@@ -6,12 +6,12 @@ const cors = require('cors');
 
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
-app.use(express.static(path.join(__dirname, '../../frontend')));
+//app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/adminPage.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/signup.html'));
 });
 
 app.use(cors());
@@ -108,3 +108,42 @@ app.post('/adminLogin', async (req, res) => {
         
 });
 
+//For signup
+app.post('/signup', async (req, res) => {
+    const { firstName, lastName, email, password, cpassword } = req.body;
+
+    // Password match validation (just in case it wasn't validated on the frontend)
+    if (password !== cpassword) {
+        return res.status(400).json({ success: false, message: 'Passwords do not match' });
+    }
+
+    // Validate email format
+    //const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //if (!emailRegex.test(email)) {
+      //  return res.status(400).json({ success: false, message: 'Invalid email format' });
+    //}
+
+    try {
+        // Check if the email already exists in the database
+        const conn = await pool.getConnection();
+        const query = "SELECT * FROM Users WHERE email = ?";
+        const existingUser = await conn.query(query, [email]);
+        conn.release();
+
+        if (existingUser.length > 0) {
+            return res.status(400).json({ success: false, message: 'Email already exists' });
+        }
+
+        // Save the user in the database (no hashing, no file upload)
+        const insertQuery = "INSERT INTO Users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        const conn2 = await pool.getConnection();
+        const result = await conn2.query(insertQuery, [firstName, lastName, email, password]);
+        conn2.release();
+
+        // Respond with success
+        res.json({ success: true, message: 'Signup successful' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'An error occurred. Please try again' });
+    }
+});

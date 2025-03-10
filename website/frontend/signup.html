@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+}
+
+#container-Signup {
+    width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#header-auth {
+    text-align: center;
+    background-color:blue;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+}
+
+#header-auth h1 {
+    font-size: 24px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 15px 0;
+}
+
+.input-field label {
+    font-weight: bold;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="file"] {
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-submit:hover {
+    background-color: #1a4060;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    #container-Signup {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .form-submit {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="container-Signup">
+        <header id="header-auth">
+            <h1>Sign Up</h1>
+        </header>
+
+        <main id="main-center">
+            <form id="signup" action="/signup" method="post" class="auth-form" enctype="multipart/form-data">
+                <p class="input-field">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" placeholder="Enter first name" />
+                    <p id="error-text-fname" class="error-text hidden">First name is invalid</p>
+                </p>
+
+                <p class="input-field">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" placeholder="Enter last name" />
+                    <p id="error-text-lname" class="error-text hidden">Last name is invalid</p>
+                </p>
+
+                <p class="input-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email" />
+                    <p id="error-text-email" class="error-text hidden">Email is invalid</p>
+                </p>
+
+                <p class="input-field">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" />
+                    <p id="error-text-password" class="error-text hidden">Password is invalid</p>
+                </p>
+
+                <p class="input-field">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" id="cpassword" placeholder="Re-enter password" />
+                    <p id="error-text-cpassword" class="error-text hidden">Password and confirm password do not match</p>
+                </p>
+
+                <p class="input-field">
+                    <label for="photo">Upload Profile Photo</label>
+                    <input type="file" id="photo" name="photo" accept="image/*" />
+                    <p id="error-text-photo" class="error-text hidden">Invalid file format</p>
+                </p>
+                
+                <!-- Google reCAPTCHA -->
+
+                <p class="input-field">
+                    <input type="submit" class="form-submit" value="Signup" />
+                </p>
+                <p id="signup-message" class="error-text hidden"></p>
+
+            </form>
+            <div class="foot-note">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </main>
+    </div>
+    <script src="js/eventSignup.js"></script>
+</body>
+</html>

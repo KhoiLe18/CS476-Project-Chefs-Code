@@ -29,6 +29,15 @@ function validateEmail(email){
     else
         return false;
 }
+
+function validatePhoto(profilephoto){
+	let avatarRegEx = /.+/;
+	if (avatarRegEx.test(profilephoto))
+		return true;
+	else
+		return false;
+}
+
 function fNameHandler(event) {
 	let fname = event.target;
 
@@ -44,6 +53,21 @@ function fNameHandler(event) {
 	}
 
 }
+
+function photoHandler(event) {
+	let avatar = event.target;
+
+	if (!validatePhoto(avatar.value)){
+		avatar.classList.add("input-field-error");
+		document.getElementById("error-text-photo").classList.remove("hidden");
+		formIsValid = false;
+	}
+	else {
+		avatar.classList.remove("input-field-error")
+		document.getElementById("error-text-photo").classList.add("hidden");
+	}
+}
+
 function lNameHandler(event) {
 	let lname = event.target;
 	
@@ -165,7 +189,15 @@ function validateSignup(event) {
 		document.getElementById("error-text-email").classList.add("hidden");
 	}
 	
-	
+	if (!validatePhoto(avatar.value)){
+		avatar.classList.add("input-field-error");
+		document.getElementById("error-text-photo").classList.remove("hidden");
+		formIsValid = false;
+	}
+	else {
+		avatar.classList.remove("input-field-error")
+		document.getElementById("error-text-photo").classList.add("hidden");
+	}
 
 	if (formIsValid === false) {
 		

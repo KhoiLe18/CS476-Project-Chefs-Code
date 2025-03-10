@@ -1,21 +1,59 @@
-let fname = document.getElementById("fname");
-fname.addEventListener("blur", fNameHandler);
+let signupForm = document.getElementById("signup");
 
-let lname = document.getElementById("lname");
-lname.addEventListener("blur", lNameHandler);
+signupForm.addEventListener("submit", async (event) => 
+ {
+    event.preventDefault();
 
-let pwd = document.getElementById("password");
-pwd.addEventListener("blur", pwdHandler);
+    // Get input values
+    const firstName = document.getElementById("fname").value;
+    const lastName = document.getElementById("lname").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("cpassword").value;
+    const photo = document.getElementById("photo").files[0];
 
-let cpwd = document.getElementById("cpassword");
-cpwd.addEventListener("blur", cpwdHandler);
+    // Validate password match
+    if (password !== confirmPassword) {
+        displayMessage("Passwords do not match", "error");
+        return;
+    }
 
+    // Prepare form data
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("password", password);
+    if (photo) {
+        formData.append("photo", photo);
+    }
 
-let email = document.getElementById("email");
-email.addEventListener("blur", emailHandler);
+    // Set up fetch options
+    const options = {
+        method: "POST",
+        body: formData
+    };
 
+    try {
+        const response = await fetch("/signup", options);
+        const json = await response.json();
+        console.log(json);
 
+        if (json.success) {
+            console.log("Signup successful!");
+            window.location.href = "index.html";
+        } else {
+            displayMessage(json.message || "Signup failed", "error");
+        }
+    } catch (error) {
+        console.error("Error during fetch:", error);
+        displayMessage("An error occurred. Please try again.", "error");
+    }
+});
 
-
-let signup = document.getElementById("signup");
-signup.addEventListener("submit", validateSignup);
+function displayMessage(message, type) {
+    const messageElement = document.getElementById("signup-message");
+    messageElement.textContent = message;
+    messageElement.style.display = "block";
+    messageElement.className = type;
+}
