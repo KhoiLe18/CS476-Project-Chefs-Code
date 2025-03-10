@@ -117,7 +117,7 @@ app.get('/api/users', async (req, res) => {
     try 
     {
         const conn = await pool.getConnection();
-        let query = 'SELECT user_id, first_name, last_name, email, profile_photo FROM Users';
+        let query = 'SELECT user_id, first_name, last_name, email FROM Users';
         
         if (searchTerm) 
         {
