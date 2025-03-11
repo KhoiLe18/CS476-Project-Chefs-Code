@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/signup.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/adminPage.html'));
 });
 
 app.use(cors());
