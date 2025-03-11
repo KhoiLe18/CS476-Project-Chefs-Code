@@ -18,18 +18,11 @@ This role has the ability to moderate other users by deleting user accounts. Thi
   - Compare input ingredients with a recipe database to suggest recipes.
   - Provide detailed instructions, quantities, and durations.
   - Suggest recipes even when some ingredients are missing.
-3. **Ingredient Replacement:**
-  - Suggest alternatives for missing ingredients.
-  - Allow users to exclude specific ingredients.
-4. **User Preferences:**
+3. **User Preferences:**
   - Support dietary preferences (e.g., vegetarian, gluten-free, etc.).
   - Support cuisine preferences (e.g., Italian, Mexican, etc.).
-5. **Recipe Database Management:**
-  - Maintain comprehensive metadata for user accounts.
-  - Ensure database consistency and efficiency.
-6. **Authentication and Profiles:**
-  - Allow users to create profiles for saving preferences and history.
-  - Enable basic app functionality for non-registered users.
+4. **Authentication and Profiles:**
+  - Allow users to create profiles for saving recipes.
 
 ## Quality Requirement
 1. **Recipe Seeker:**
@@ -38,6 +31,6 @@ This role has the ability to moderate other users by deleting user accounts. Thi
   - **Time-Efficiency:** Provide results within a few seconds of input.
 
 2. **Account Admin:**
-  - **Robustness:**  
-  - **Correctness:** 
-  - **Time-Efficiency:** 
+  - **Robustness:** When searching for a non-existant user, the search engine will provide an appropriate error message. 
+  - **Correctness:** When the admin selects a user to delete from the GUI, the same user will be deleted from the database.
+  - **Time-Efficiency:** Deletion happens in real-time.

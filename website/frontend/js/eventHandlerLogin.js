@@ -1,5 +1,5 @@
 
- function validateName(name) {
+function validateName(name) {
     let nameRegEx = /^[a-zA-Z]+$/;
 
     if (nameRegEx.test(name))
