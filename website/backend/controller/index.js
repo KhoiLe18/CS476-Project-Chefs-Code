@@ -14,6 +14,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/login.html'));
 });
 
+app.use(express.static(path.join(__dirname, '../../frontend')));
+
 app.use(cors());
 const RECAPTCHA_SECRET_KEY = "6LcBx_AqAAAAACo903p3VZdmdWw7nx6M4QJYfX-9";
 
@@ -132,7 +134,6 @@ app.post('/signup', async (req, res) => {
         if (!recaptchaJson.success) {
             return res.status(400).json({ success: false, message: "reCAPTCHA verification failed" });
         }
-
         try {
         const emailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
@@ -169,7 +170,7 @@ app.post('/signup', async (req, res) => {
 });
 
 
-//FOR ADMIN LOGIN
+//FOR USER LOGIN
 app.post('/login', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
