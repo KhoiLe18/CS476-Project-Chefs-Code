@@ -275,3 +275,22 @@ input[type=number] {
 .error-box {
     border: 5px rgb(31, 26, 5) solid;
 }
+
+#login-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.error {
+    background-color: #ffeeee;
+    color: #ff0000;
+    border: 1px solid #ffcccc;
+}
+
+.success {
+    background-color: #eeffee;
+    color: #008800;
+    border: 1px solid #ccffcc;
+}

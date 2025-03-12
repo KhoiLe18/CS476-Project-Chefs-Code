@@ -5,13 +5,13 @@ const pool = require('../model/db');
 const cors = require('cors');
 
 const app = express();
-app.listen(3001, () => console.log('listening at 3000'));
+app.listen(3000, () => console.log('listening at 3000'));
 //app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/signup.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/login.html'));
 });
 
 app.use(cors());
@@ -134,15 +134,19 @@ app.post('/signup', async (req, res) => {
         }
 
         try {
-        //const emailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        //if (!emailRegex.test(email)) {
-          //  return res.status(400).json({ success: false, message: "Invalid email format" });
-        //}
+        const emailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+           return res.status(400).json({ success: false, message: "Invalid email format" });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ success: false, message: "Password must be at least 6 characters long" });
+        }
         
         //Check if email already exists
         const conn = await pool.getConnection();
         const query = "SELECT * FROM Users WHERE email = ?";
-        const [existingUser] = await conn.query(query, [email]);
+        const existingUser = await conn.query(query, [email]);
         conn.release();
 
         if (existingUser.length > 0) {
@@ -162,4 +166,40 @@ app.post('/signup', async (req, res) => {
         console.error("Error:", err);
         res.status(500).json({ success: false, message: "An error occurred. Please try again" });
     }
+});
+
+
+//FOR ADMIN LOGIN
+app.post('/login', async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+   
+
+    try
+    {
+        //connect to the database
+        const conn = await pool.getConnection();
+        const query = "SELECT * FROM Users WHERE email = ? AND password = ?";
+        const rows = await conn.query(query, [email, password]);
+        console.log("Here are the rows: ", rows.length);
+        conn.release();
+        
+        if (rows.length > 0)
+        {
+            res.json({success: true, message: "Login successful"});
+            console.log("Credentials Valid!! :)", res.message)
+        }
+        else
+        {
+            res.json({success: false, message: "Invalid credentials"});
+            console.log("Invalid credentials", res.message)
+        }
+    }
+
+    catch (err)
+    {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+        
 });

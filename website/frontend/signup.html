@@ -185,16 +185,29 @@ footer p {
         
         const recaptchaResponse = grecaptcha.getResponse();
 
+         // Clear previous error messages
+        document.querySelectorAll(".error-text").forEach(el => el.style.display = "none");
+
+        let valid = true;
+
+    // Validate password length
+        if (password.length < 6) {
+            displayMessage("Password must be at least 6 characters long", "error", "error-text-password");
+            valid = false;
+        }
+
+    // Validate passwords match
+        if (password !== confirmPassword) {
+            displayMessage("Passwords do not match", "error", "error-text-cpassword");
+            valid = false;
+        }
+
         if (!recaptchaResponse) {
             displayMessage("Please complete the reCAPTCHA", "error");
-        return;
+            valid = false;
         }
     
-    // Validate Passwords Match
-    if (password !== confirmPassword) {
-            displayMessage("Password and confirm password do not match", "error");
-            return;
-        }
+        if (!valid) return;
     
         const data = {
             firstName: firstName,
@@ -225,7 +238,7 @@ footer p {
     
             if (json.success) {
                 console.log("Signup successful!");
-                window.location.href = "index.html";
+                window.location.href = "login.html";
             } else {
                 displayMessage(json.message || "Signup failed", "error");
             }
@@ -243,5 +256,5 @@ footer p {
         messageElement.className = type;
     }
     
-        </script>
+    </script>
 </html>
