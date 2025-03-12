@@ -150,29 +150,63 @@ app.get('/api/users', async (req, res) => {
 app.delete('/api/users/:userId', async (req, res) => {
     const userId = req.params.userId;
     
-    try 
-    {
+    try {
         const conn = await pool.getConnection();
-        const query = 'DELETE FROM Users WHERE user_id = ?';
-        const result = await conn.query(query, [userId]);
-        conn.release();
         
-        if (result.affectedRows > 0) 
-        {
-            res.json({ success: true, message: 'User deleted successfully' });
-        } 
-        else 
-        {
+        // First get the user information before deleting
+        const userQuery = 'SELECT first_name, last_name FROM Users WHERE user_id = ?';
+        const userInfo = await conn.query(userQuery, [userId]);
+        //console.log("USER INFO IS ", userInfo);
+        
+        if (userInfo.length === 0) {
+            conn.release();
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        
+        // Store user info
+        const fullName = `${userInfo[0].first_name} ${userInfo[0].last_name}`;
+        
+        // Delete the user
+        const deleteQuery = 'DELETE FROM Users WHERE user_id = ?';
+        const result = await conn.query(deleteQuery, [userId]);
+        conn.release();
+
+        console.log("USER INFO AFTER DATABASE DELETION: ", fullName);
+        
+        if (result.affectedRows > 0) {
+            // Store deletion message in a session or database
+            // You can use a simple storage approach or database table
+            app.locals.deletedUserMessage = `${fullName} has been deleted by the admin`;
+            
+            res.json({ 
+                success: true, 
+                message: 'User deleted successfully',
+                deletedUser: fullName
+            });
+        } else {
             res.status(404).json({ success: false, message: 'User not found' });
         }
-    } 
-    
-    catch (err) 
-    {
+    } catch (err) {
         console.error('Database error:', err);
         res.status(500).json({ success: false, message: 'Database query failed' });
     }
 });
+
+
+
+// Endpoint to check for deletion messages
+/*
+app.get('/api/deletion-message', (req, res) => {
+    const message = JSON.parse(localStorage.getItem('deletedUser'));
+    console.log("In the deletion-message end point!", message)
+    // Clear the message after sending it (so it only shows once)
+    localStorage.removeItem('deletedUser');
+    
+    res.json(message);
+});
+*/
+
+
 
 app.post('/signup', async (req, res) => {
     const firstName = req.body.firstName;

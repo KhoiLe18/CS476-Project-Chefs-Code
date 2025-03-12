@@ -157,6 +157,16 @@ aside {
     color: #008800;
     border: 1px solid #ccffcc;
 }
+
+.deletion-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    display: none;
+}
 </style>> 
 </head>
  
@@ -269,6 +279,57 @@ aside {
   .catch(error => {
     console.error("Error during fetch:", error);
   });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Create a message container if it doesn't exist
+  let messageContainer = document.getElementById('deletion-message');
+  if (!messageContainer) {
+      messageContainer = document.createElement('div');
+      messageContainer.id = 'deletion-message';
+      messageContainer.className = 'deletion-message';
+      
+      // Insert after login form or in an appropriate place
+      const loginContainer = document.getElementById('loginBut');
+      loginContainer.appendChild(messageContainer);
+  }
+
+  
+  // Check for deletion messages
+  checkForDeletionMessage();
+  
+  function checkForDeletionMessage() {
+    console.log("checking for deletion message!");
+    //get the deleted user from local storage
+    const deletedUser = JSON.parse(localStorage.getItem('deletedUser'));
+
+    const message = `User with the name of ${deletedUser.first_name} ${deletedUser.last_name} has had their account deleted by the admin!`;
+
+    messageContainer.textContent = message;
+    messageContainer.style.display = 'block';
+      
+      // Auto-hide after a few seconds
+      setTimeout(() => {
+        messageContainer.style.display = 'none';
+      }, 5000);
+
+      //delete the info from local storage
+      localStorage.removeItem('deletedUser');
+      console.log(localStorage.getItem('deletedUser'));
+          
+  }
+  
+  function showDeletionMessage(message) {
+      messageContainer.textContent = message;
+      messageContainer.style.display = 'block';
+      
+      // Auto-hide after a few seconds
+      setTimeout(() => {
+          messageContainer.style.display = 'none';
+      }, 5000);
+  }
 });
  </script>
  </html>

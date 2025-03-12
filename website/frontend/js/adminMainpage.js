@@ -103,6 +103,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function confirmDelete() {
         if (!userToDelete) return;
         
+        // Find the user name before deletion for the message
+        const userToDeleteInfo = currentUsers.find(user => user.user_id == userToDelete);
+        
         // Send delete request to server
         fetch(`/api/users/${userToDelete}`, {
             method: 'DELETE',
@@ -121,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Remove the user from the table
                 loadUsers();
                 closeDeleteModal();
+                
             } else {
                 alert('Error deleting user: ' + data.message);
             }
@@ -129,6 +133,10 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error deleting user:', error);
             alert('Error deleting user. Please try again.');
         });
+
+        //save the user that was deleted into local storage to be accessed in the login.html page
+        localStorage.setItem('deletedUser', JSON.stringify(userToDeleteInfo));
+        console.log("The user deleted was ", localStorage.getItem('deletedUser'));
     }
     
     function handleLogout() {
