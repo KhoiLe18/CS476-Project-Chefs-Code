@@ -1,4 +1,5 @@
 let loginButton = document.getElementById("subButton");
+let userLogin = document.getElementById("userLogin");
 
 loginButton.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -59,3 +60,11 @@ loginButton.addEventListener("click", async (event) => {
     console.error("Error during fetch:", error);
   });
 });
+
+/*
+userLogin.addEventListener("click", async (event) => {
+  window.location.href = "login.html";
+
+});
+
+*/
