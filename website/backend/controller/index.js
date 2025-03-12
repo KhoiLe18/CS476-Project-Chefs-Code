@@ -11,13 +11,13 @@ app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/signup.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/login.html'));
 });
 
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
 app.use(cors());
-
+const RECAPTCHA_SECRET_KEY = "6LcBx_AqAAAAACo903p3VZdmdWw7nx6M4QJYfX-9";
 
 //FOR FETCHING RECIPE MATCHES ACCORDING TO INPUTTED INGREDIENTS, CUISINES, AND DIETARY RESTRICTIONS
 app.post('/api', async (request, response) => {
@@ -50,6 +50,7 @@ app.post('/api', async (request, response) => {
     //now that it is all converted, send the response back to the client that requested this data!
     response.json(json);
 });
+
 
 
 //FOR LOADING THE RECIPE DATA SELECTED IN MAIN RECIPE SEARCH PAGE
@@ -108,6 +109,7 @@ app.post('/adminLogin', async (req, res) => {
     }
         
 });
+
 
 
 // GET users endpoint - retrieve all users with optional search filtering
@@ -170,4 +172,99 @@ app.delete('/api/users/:userId', async (req, res) => {
         console.error('Database error:', err);
         res.status(500).json({ success: false, message: 'Database query failed' });
     }
+});
+
+app.post('/signup', async (req, res) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const recaptcha = req.body.recaptcha;
+
+    if (!recaptcha) {
+        return res.status(400).json({ success: false, message: "Please complete reCAPTCHA" });
+    }
+
+    
+        const recaptchaURL = `https://www.google.com/recaptcha/api/siteverify`;
+        const recaptchaResponse = await fetch(recaptchaURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `secret=${RECAPTCHA_SECRET_KEY}&response=${recaptcha}`  // Correct template literal usage
+        });
+
+        const recaptchaJson = await recaptchaResponse.json();
+
+        if (!recaptchaJson.success) {
+            return res.status(400).json({ success: false, message: "reCAPTCHA verification failed" });
+        }
+        try {
+        const emailRegex =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+           return res.status(400).json({ success: false, message: "Invalid email format" });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ success: false, message: "Password must be at least 6 characters long" });
+        }
+        
+        //Check if email already exists
+        const conn = await pool.getConnection();
+        const query = "SELECT * FROM Users WHERE email = ?";
+        const existingUser = await conn.query(query, [email]);
+        conn.release();
+
+        if (existingUser.length > 0) {
+            return res.status(400).json({ success: false, message: "Email already exists" });
+        }
+
+        // Save the user in the database
+        const insertQuery = "INSERT INTO Users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+        const conn2 = await pool.getConnection();
+        await conn2.query(insertQuery, [firstName, lastName, email, password]);
+        conn2.release();
+
+        // Respond with success
+        res.json({ success: true, message: "Signup successful" });
+
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).json({ success: false, message: "An error occurred. Please try again" });
+    }
+});
+
+
+//FOR USER LOGIN
+app.post('/login', async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+   
+
+    try
+    {
+        //connect to the database
+        const conn = await pool.getConnection();
+        const query = "SELECT * FROM Users WHERE email = ? AND password = ?";
+        const rows = await conn.query(query, [email, password]);
+        console.log("Here are the rows: ", rows.length);
+        conn.release();
+        
+        if (rows.length > 0)
+        {
+            res.json({success: true, message: "Login successful"});
+            console.log("Credentials Valid!! :)", res.message)
+        }
+        else
+        {
+            res.json({success: false, message: "Invalid credentials"});
+            console.log("Invalid credentials", res.message)
+        }
+    }
+
+    catch (err)
+    {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+        
 });
