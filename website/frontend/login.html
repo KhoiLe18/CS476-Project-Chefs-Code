@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+ <html>
+ 
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login</title>
+<style>
+
+/* Common CSS styles for all the files begins */
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+    background-image: url("image.png");
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the image fixed when scrolling */
+    background-repeat: no-repeat;
+    background-blend-mode: lighten;
+    font-family: 'DM Serif Text', serif; /* Apply DM Serif Text font to the body */
+}
+#container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 150px auto 100px;
+    grid-gap: 5px;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+#header-auth {
+    background-color: rgb(95, 74, 6);
+    opacity: 0.9;
+    color: lightyellow;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+a {
+    color: lightyellow;
+}
+header h1 {
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    font-family: 'Merriweather', serif; /* Apply Merriweather for headings */
+}
+#main-left {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+#main-center {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+#main-right {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+#footer-auth {
+    background-color: rgb(95, 74, 6);
+    color: lightyellow;
+    width: 100%;
+    text-align: center;
+    opacity: 0.9;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+.login {
+    margin-top: 30px;
+    border: 1px solid rgb(95, 74, 6);
+    opacity: 0.9;
+    border-radius: 60px;
+    padding: 20px 20px 40px 20px;
+    width: 100%;
+    background-color: rgb(95, 74, 6);
+    padding: 40px;
+}
+input {
+    float: right;
+    border-radius: 7px;
+    padding: 5px;
+    width: 70%;
+}
+.input-field {
+    width: auto;
+    margin: 10px;
+    padding: 3px 3px;
+    color: lightyellow;
+}
+
+.footer-text {
+    margin-top: 35px;
+    font-size: 20px;
+}
+/* CSS styles for loginHistory.html begins */
+
+img {
+    width: 100%;
+    border: 1px solid;
+    border-radius: 10px;
+}
+h2 {
+    color: lightyellow;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+section {
+    color: lightyellow;
+}
+img {
+    width: 100%;
+    border: 1px solid rgb(95,74,6);
+    opacity: 0.9;
+    border-radius: 10px;
+}
+aside {
+    padding-left: 30px;
+}
+#user-data {
+    padding: 0px 0px 30px 20px;
+    margin: 20px 0px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+}
+
+
+.error-box {
+    border: 5px rgb(31, 26, 5) solid;
+}
+
+#login-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.error {
+    background-color: #ffeeee;
+    color: #ff0000;
+    border: 1px solid #ffcccc;
+}
+
+.success {
+    background-color: #eeffee;
+    color: #008800;
+    border: 1px solid #ccffcc;
+}
+</style>> 
+</head>
+ 
+ <body>
+     <div id="container">
+         <header id="header-auth">
+             <h1>Login</h1>
+         </header>
+         <main id="main-left">
+ 
+         </main>
+         <main id="main-center">
+             <form id="login">
+                 <p class="input-field">
+                     <!-- HTML Todo 1 -->
+                     <label id="uname_msg" class="error"></label>
+                     <br>
+                     <label for="uname">Email:</label> <!-- label for the username input -->
+                     <input type="text" placeholder="Enter the Email Address" name="email" id="email" /> <!-- username input box -->
+                     
+                     
+                 </p>
+                 <p class="input-field">
+                     <!-- HTML Todo 2 -->
+                     <label id="pwd_msg" class="error"></label>
+                     <br>
+                     <label for="pwd">Password:</label><!-- label for the password input -->
+                     <input type="password" placeholder="Enter the Password" name="pwd" id="password" /><!-- password input box -->
+                 </p>
+ 
+                 <p class="input-field">
+                    <button type="button" id="loginBut">Login</button>                   
+                 </p>
+             </form>
+             <div class="foot-note">
+                     <div id="display"></div>
+                     <a href="signup.html">Do not have an account? Signup</a><!-- add login link -->
+                 
+             </div>
+         </main>
+        
+         <footer id="footer-auth">
+             <p class="footer-text"> Chef's Code</p>
+         </footer>
+     </div>
+     <style>
+         /* Remove underline from all links */
+         a {
+             text-decoration: none;
+         }
+     </style>
+ </body>
+ <script>
+    let loginButton = document.getElementById("loginBut");
+
+    loginButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    // get input in username input bar, and save it in variable username
+    const email = document.getElementById("email").value;
+    //console.log(username);
+    // get input from password search bar
+    const password = document.getElementById("password").value;
+    //console.log(password);
+
+    // put all input into an object to send away to the backend api recipe fetch function
+    const data = {
+        email: email,
+        password: password
+    };
+
+    // console.log(requestData)
+    // set up the options for the post method, which requests data to our end point in the backend called /admiLogin in index.js
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    };
+    //console.log("Is it working here...?");
+    fetch('/login', options).then(async response => {
+
+    //Get the response in json format and save it into variable json. 
+    //The response will let us know if there was a username + password combo match in our database! (check backend for this logic)
+    const json = await response.json();
+    console.log(json);  // Log the entire response object first to see what we're working with
+    
+    // Handle the response appropriately
+    //if success was sent back as true, then a match was found! Redirect admin user to adminMainpage.html
+    if (json.success) 
+    {
+      // Redirect or update UI for successful login
+      console.log("Login successful!");
+      window.location.href = "index.html";
+    } 
+    
+    //In any other case, success = false, so the login has failed. Print out the error message to the user.
+    else 
+    {
+      // Show error message
+      console.log("Login failed:", json.message);
+
+      const loginMessage = document.getElementById("login-message"); 
+        loginMessage.textContext = "Does this work?";
+        loginMessage.style.display = "block";
+        loginMessage.className = "error";
+      
+    }
+  })
+  .catch(error => {
+    console.error("Error during fetch:", error);
+  });
+});
+ </script>
+ </html>
