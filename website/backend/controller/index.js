@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/login.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/adminPage.html'));
 });
 
 app.use(express.static(path.join(__dirname, '../../frontend')));
@@ -108,6 +108,70 @@ app.post('/adminLogin', async (req, res) => {
         res.status(500).json({ success: false, message: "Database query failed" });
     }
         
+});
+
+
+
+// GET users endpoint - retrieve all users with optional search filtering
+app.get('/api/users', async (req, res) => {
+    const searchTerm = req.query.search || '';
+    
+    try 
+    {
+        const conn = await pool.getConnection();
+        let query = 'SELECT user_id, first_name, last_name, email FROM Users';
+        
+        if (searchTerm) 
+        {
+            // Add search condition if there's a search term
+            query += ' WHERE first_name LIKE ? OR last_name LIKE ? OR email LIKE ?';
+            const searchParam = `%${searchTerm}%`;
+            const rows = await conn.query(query, [searchParam, searchParam, searchParam]);
+            conn.release();
+            res.json(rows);
+        } 
+        else 
+        {
+            // Get all users if no search term
+            const rows = await conn.query(query);
+            conn.release();
+            res.json(rows);
+        }
+    } 
+    
+    catch (err) 
+    {
+        console.error('Database error:', err);
+        res.status(500).json({ success: false, message: 'Database query failed' });
+    }
+});
+
+// DELETE user endpoint - delete a specific user by ID
+app.delete('/api/users/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    
+    try 
+    {
+        const conn = await pool.getConnection();
+        const query = 'DELETE FROM Users WHERE user_id = ?';
+        const result = await conn.query(query, [userId]);
+        conn.release();
+        
+        if (result.affectedRows > 0) 
+        {
+            res.json({ success: true, message: 'User deleted successfully' });
+        } 
+        else 
+        {
+            res.status(404).json({ success: false, message: 'User not found' });
+        }
+    } 
+    
+    catch (err) 
+    {
+        console.error('Database error:', err);
+        res.status(500).json({ success: false, message: 'Database query failed' });
+    }
 });
 
 app.post('/signup', async (req, res) => {
