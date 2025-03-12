@@ -108,7 +108,6 @@ app.post('/adminLogin', async (req, res) => {
         
 });
 
-
 app.post('/signup', async (req, res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;

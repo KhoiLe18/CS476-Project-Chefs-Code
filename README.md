@@ -9,30 +9,20 @@
 The recipe seekers are the individuals who use our website to look for recipe options based on the ingredients they have. To do so, users need to type in the ingredients they currently have on hand. Then based on the ingredients the user entered, they will receive recipe recommendations they can make with the ingredients they have.
 
 **Account Admin (Admin Role)**
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This role has the ability to moderate other users by deleting user accounts. This is to stop users from displaying inappropriate behaviors on the website.
 
 ## Functional Requirement
 1. **User Interaction:**
   - Users input a list of available ingredients.
-  - A chat interface enables intuitive interaction.
 2. **Recipe Search and Recommendation:**
   - Compare input ingredients with a recipe database to suggest recipes.
   - Provide detailed instructions, quantities, and durations.
   - Suggest recipes even when some ingredients are missing.
-3. **Ingredient Replacement:**
-  - Suggest alternatives for missing ingredients.
-  - Allow users to exclude specific ingredients.
-4. **User Preferences:**
-  - Support dietary preferences (e.g., vegetarian, gluten-free).
-5. **Recipe Database Management:**
-  - Maintain comprehensive metadata for recipes.
-  - Ensure database consistency and efficiency.
-6. **Authentication and Profiles:**
-  - Allow users to create profiles for saving preferences and history.
-  - Enable basic app functionality for non-registered users.
-7. **Analytics (Optional):**
-  - Provide insights on popular ingredients and cuisine types.
-  - Save favorite recipes and preferences.
+3. **User Preferences:**
+  - Support dietary preferences (e.g., vegetarian, gluten-free, etc.).
+  - Support cuisine preferences (e.g., Italian, Mexican, etc.).
+4. **Authentication and Profiles:**
+  - Allow users to create profiles for saving recipes.
 
 ## Quality Requirement
 1. **Recipe Seeker:**
@@ -41,6 +31,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   - **Time-Efficiency:** Provide results within a few seconds of input.
 
 2. **Account Admin:**
-  - **Robustness:** Flag and handle incomplete recipe submissions while allowing addition to the database. 
-  - **Correctness:** Recipes must include accurate and essential details like quantities, methods, and dietary tags.
-  - **Time-Efficiency:** Enable quick uploads and updates to the recipe database for immediate user access.
+  - **Robustness:** When searching for a non-existant user, the search engine will provide an appropriate error message. 
+  - **Correctness:** When the admin selects a user to delete from the GUI, the same user will be deleted from the database.
+  - **Time-Efficiency:** Deletion happens in real-time.
