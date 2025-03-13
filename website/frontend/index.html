@@ -53,7 +53,36 @@
     </nav>
 
     <main class="main">
-        <h1>main content</h1>
+        <div class="main-content">
+            
+            <div class="search-container">
+                <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
+                
+                <div class="filters">
+                    <select class="dropdown" id = "cuisine">
+                        <option selected disabled>Cuisine Type</option>
+                        <option>Italian</option>
+                        <option>Chinese</option>
+                        <option>Indian</option>
+                        <option>Mexican</option>
+                    </select>
+                    
+                    <select class="dropdown" id = "diet">
+                        <option selected disabled>Dietary Restrictions</option>
+                        <option>Vegetarian</option>
+                        <option>Vegan</option>
+                        <option>Gluten-Free</option>
+                        <option>Keto</option>
+                    </select>
+                </div>
+                
+                <button class="submit-button" id = "subButton">Submit</button>
+            </div>
+            
+            
+            <div class="results-container" id = "results"></div>
+        </div>
+        
     </main>
 
     
@@ -66,9 +95,6 @@
         
         
         <div class="main-content">
-            <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
-            <h1 class="title">Recipe Generator</h1>
-            
             
             <div class="search-container">
                 <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
