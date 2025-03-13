@@ -3,7 +3,9 @@ const fetch = require('node-fetch');
 const path = require('path');
 const pool = require('../model/db');
 const cors = require('cors');
-
+//const dotenv = require('dotenv');
+//dotenv.config();
+   
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
 app.use(express.json());
