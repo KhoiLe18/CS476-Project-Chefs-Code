@@ -1,3 +1,4 @@
+// to open and close the sidebar menu
 const sidebar = document.querySelector(".sidebar");
 const sidebarClose = document.querySelector("#sidebar-close");
 
