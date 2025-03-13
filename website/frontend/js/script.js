@@ -1,8 +1,9 @@
+const sidebar = document.querySelector(".sidebar");
+const sidebarClose = document.querySelector("#sidebar-close");
 
+sidebarClose.addEventListener("click", () => 
+    sidebar.classList.toggle("close"))
 
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("show");
-}
 
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".submit-button").addEventListener("click", function() {
