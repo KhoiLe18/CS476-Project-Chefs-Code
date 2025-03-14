@@ -9,83 +9,123 @@
     <!--font awesome link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
-<<<<<<< HEAD
-<body class="bg-gray-100 font-sans">
-    <div class="flex">
-        <!-- Sidebar -->
-        <div id="sidebar" class="sidebar">
-            <div class="sidebar-header">
-                <h2>Dashboard</h2>
-                <button class="cancel-button">✖</button>
+    <body>
+
+        <nav class="sidebar">
+            <a href="#" class="logo">Dashboard</a>
+
+            <div class="menu-content">
+                <ul class="menu-items">
+                    <div class="menu-title">Welcome, User</div>
+
+                    <li class="item">
+                        <a href="#">
+                            <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
+                        </a>
+                    </li>
+
+                    <li class="item">
+                        <a href="#">
+                            <i class="fa-solid fa-heart"></i> Favorites
+                        </a>
+                    </li>
+
+                    <li class="item">
+                        <a href="#">
+                            <i class="fa-solid fa-sliders"></i> User Settings
+                        </a>
+                    </li>
+
+                    <li class="item">
+                        <a href="#">
+                            <i class="fa-solid fa-share-from-square"></i> Logout
+                        </a>
+                    </li>
+
+                </ul>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="#">User Profile</a></li>
-                <li><a href="favourites.html">Favorites</a></li>
-                <li><a href="login.html">Logout</a></li>
-=======
-<body>
+        </nav>
 
-    <nav class="sidebar">
-        <a href="#" class="logo">Dashboard</a>
+        <nav class="navbar">
+            <i class="fa-solid fa-bars" id="sidebar-close"></i>
+        </nav>
 
-        <div class="menu-content">
-            <ul class="menu-items">
-                <div class="menu-title">Welcome, User</div>
-
-                <li class="item">
-                    <a href="#">
-                        <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
-                    </a>
-                </li>
-
-                <li class="item">
-                    <a href="#">
-                        <i class="fa-solid fa-sliders"></i> User Settings
-                    </a>
-                </li>
-
->>>>>>> queen
-            </ul>
-        </div>
-    </nav>
-
-    <div class="flex">
-     
-        
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
-            <h1 class="title">Recipe Generator</h1>
-            
-            <!-- Search and Filters -->
-            <div class="search-container">
-                <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
+        <main class="main">
+            <div class="main-content">
                 
-                <div class="filters">
-                    <select class="dropdown" id = "cuisine">
-                        <option selected disabled>Cuisine Type</option>
-                        <option>Italian</option>
-                        <option>Chinese</option>
-                        <option>Indian</option>
-                        <option>Mexican</option>
-                    </select>
+                <div class="search-container">
+                    <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
                     
-                    <select class="dropdown" id = "diet">
-                        <option selected disabled>Dietary Restrictions</option>
-                        <option>Vegetarian</option>
-                        <option>Vegan</option>
-                        <option>Gluten-Free</option>
-                        <option>Keto</option>
-                    </select>
+                    <div class="filters">
+                        <select class="dropdown" id = "cuisine">
+                            <option selected disabled>Cuisine Type</option>
+                            <option>Italian</option>
+                            <option>Chinese</option>
+                            <option>Indian</option>
+                            <option>Mexican</option>
+                        </select>
+                        
+                        <select class="dropdown" id = "diet">
+                            <option selected disabled>Dietary Restrictions</option>
+                            <option>Vegetarian</option>
+                            <option>Vegan</option>
+                            <option>Gluten-Free</option>
+                            <option>Keto</option>
+                        </select>
+                    </div>
+                    
+                    <button class="submit-button" id = "subButton">Submit</button>
                 </div>
                 
-                <button class="submit-button" id = "subButton">Submit</button>
+                
+                <div class="results-container" id = "results"></div>
             </div>
             
-            <!-- Recipe Results -->
-            <div class="results-container" id = "results"></div>
+        </main>
+
+        
+
+        <!--
+        
+        <div class="flex">
+        
+            
+            
+            
+            <div class="main-content">
+                
+                <div class="search-container">
+                    <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
+                    
+                    <div class="filters">
+                        <select class="dropdown" id = "cuisine">
+                            <option selected disabled>Cuisine Type</option>
+                            <option>Italian</option>
+                            <option>Chinese</option>
+                            <option>Indian</option>
+                            <option>Mexican</option>
+                        </select>
+                        
+                        <select class="dropdown" id = "diet">
+                            <option selected disabled>Dietary Restrictions</option>
+                            <option>Vegetarian</option>
+                            <option>Vegan</option>
+                            <option>Gluten-Free</option>
+                            <option>Keto</option>
+                        </select>
+                    </div>
+                    
+                    <button class="submit-button" id = "subButton">Submit</button>
+                </div>
+                
+                
+                <div class="results-container" id = "results"></div>
+            </div>
         </div>
-    </div>
-</body>
+        
+        -->
+
+
+
+    </body>
 </html>

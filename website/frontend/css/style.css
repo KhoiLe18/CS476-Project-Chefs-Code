@@ -13,7 +13,6 @@
     height: 100%;
     width: 260px;
     background: #11101d;
-    right: 0;
     padding: 15px;
 }
 
@@ -29,6 +28,10 @@
     margin-top: 20px;
 }
 
+.menu-items {
+    list-style: none;
+}
+
 .sidebar a {
     color: #fff;
     text-decoration: none;
@@ -37,8 +40,62 @@
 .menu-title {
     color: #fff;
     font-size: 15px;
-    padding: 0 58px 20px;
+    padding: 0 58px 15px;
 }
+
+.item a {
+    padding: 14px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.item a:hover {
+    background: rgba(255, 255, 255, 0.1)
+}
+
+.item a i {
+    margin-right: 10px;
+}
+
+.navbar,
+.main {
+    left: 260px;
+    width: calc(100% - 260px);
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.sidebar.close ~ .navbar,
+.sidebar.close ~ .main {
+    left: 0;
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    background: #fff;
+    color: #11101d;
+    padding: 12px 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.navbar #sidebar-close {
+    cursor: pointer;
+}
+
+.main {
+    position: relative;  
+    height: 100vh;
+    z-index: 100;
+    background: #e7f2fd;
+    padding-top: 65px;
+}
+
+
+
 
 body {
     font-family: sans-serif;
