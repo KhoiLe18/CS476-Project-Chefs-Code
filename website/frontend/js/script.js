@@ -31,7 +31,15 @@ document.addEventListener("DOMContentLoaded", function() {
 let searchButton = document.getElementById("subButton");
 
 searchButton.addEventListener("click", async (event) => {
-    // check the event, try to get the id from there
+    // Clear previous results
+    const resultsContainer = document.getElementById("results");
+    resultsContainer.innerHTML = "";
+    
+    // Add loading indicator
+    const loadingIndicator = document.createElement("div");
+    loadingIndicator.className = "no-results";
+    loadingIndicator.textContent = "Searching for recipes...";
+    resultsContainer.appendChild(loadingIndicator);
 
     // get input in ingredient search bar, and save it in variable ingredients
     const ingredients = document.getElementById("ingredInput").value;
@@ -49,7 +57,6 @@ searchButton.addEventListener("click", async (event) => {
         diet: diet
     };
 
-    // console.log(requestData)
     // set up the options for the post method, which requests data to our end point in the backend called /api in index.js
     const options = {
         method: "POST",
@@ -59,42 +66,61 @@ searchButton.addEventListener("click", async (event) => {
         // body: JSON.stringify(data)
         body: JSON.stringify(requestData)
     };
-    fetch('/api', options).then(async response => {
-        
+    
+    try {
+        const response = await fetch('/api', options);
         const json = await response.json();
-
+        
+        // Clear loading indicator
+        resultsContainer.innerHTML = "";
+        
         console.log(json.results);
-        // get the div for the found recipes to go in
-        const recipes = document.getElementById("results");
-
-        //console.log(event.target.value, event.target, "EVNETTTT")
 
         // if there are no matching recipes, print out the following message
-        if (json?.results?.length === 0) {
-            recipes.innerHTML = "No recipes found! Make sure your spelling is correct, or try fewer ingredients!";
+        if (!json?.results || json.results.length === 0) {
+            const noResults = document.createElement("div");
+            noResults.className = "no-results";
+            noResults.innerHTML = `
+                <i class="fa-solid fa-face-sad-tear"></i>
+                <p>No recipes found! Make sure your spelling is correct, or try fewer ingredients!</p>
+            `;
+            resultsContainer.appendChild(noResults);
         } else {
-            // in the div saved in 'recipes', start printing out and displaying the fetched data from our spoonacular API 
+            // Add a small delay between each card animation
+            let delay = 0;
+            
+            // in the div saved in 'results', start printing out and displaying the fetched data from our spoonacular API 
             json.results.forEach(recipe => {
-                const recipeItem = document.createElement("div");
-
-                // get recipe title and save it in a header
-                //const recipeTitle = document.createElement("h3");
-                //recipeTitle.textContent = recipe.title;
-
-                // get the recipe's image and save it in an img
+                // Create recipe card
+                const recipeCard = document.createElement("div");
+                recipeCard.className = "recipe-card";
+                recipeCard.style.animationDelay = `${delay}ms`;
+                delay += 100; // Stagger animation
+                
+                // Create recipe image
                 const recipeImage = document.createElement("img");
                 recipeImage.src = recipe.image;
                 recipeImage.alt = recipe.title;
-
-                const recipeLink = document.createElement("a");
-
-                // this is for the 'view recipe' link: when a user clicks this, the recipe ingredients and instructions will pop up!
-                recipeLink.href = "home.html";
-                recipeLink.textContent = recipe.title;
-
+                recipeImage.className = "recipe-image";
                 
+                // Create content container
+                const recipeContent = document.createElement("div");
+                recipeContent.className = "recipe-content";
+                
+                // Create recipe title/link
+                const recipeLink = document.createElement("a");
+                recipeLink.className = "recipe-title";
+                recipeLink.href = "#";
+                recipeLink.textContent = recipe.title;
+                
+                // Handle recipe click
                 recipeLink.onclick = async function (event) {
                     event.preventDefault();
+                    
+                    // Change link text to indicate loading
+                    const originalText = recipeLink.textContent;
+                    recipeLink.textContent = "Loading recipe...";
+                    
                     const options = {
                         method: "POST",
                         headers: {
@@ -102,26 +128,42 @@ searchButton.addEventListener("click", async (event) => {
                         },
                         body: JSON.stringify({ id: recipe.id })
                     };
-                    fetch('/viewRecipe', options).then(async response => {
+                    
+                    try {
+                        const response = await fetch('/viewRecipe', options);
                         const json = await response.json();
-                        console.log("Here are the results!")
+                        console.log("Here are the results!");
                         console.log(json.instructions);
 
                         // Save recipe data to localStorage so the details page can access it
                         localStorage.setItem('recipeDetails', JSON.stringify(json));
-        
+            
                         // Now navigate to the recipe page
                         window.location.href = 'recipeDetails.html';
-                    });
-                }
-
-                // Append all of the important recipe bits onto recipeItem, and append recipeItem onto the bottom of our webpage 
-                //recipeItem.appendChild(recipeTitle);
-                recipes.appendChild(recipeItem);
-                recipeItem.appendChild(recipeImage);
-                recipeItem.appendChild(recipeLink);
-                //recipes.appendChild(recipeItem);
-            })
+                    } catch (error) {
+                        console.error("Error fetching recipe details:", error);
+                        recipeLink.textContent = originalText;
+                        alert("Failed to load recipe details. Please try again.");
+                    }
+                };
+                
+                // Assemble the recipe card
+                recipeContent.appendChild(recipeLink);
+                recipeCard.appendChild(recipeImage);
+                recipeCard.appendChild(recipeContent);
+                resultsContainer.appendChild(recipeCard);
+            });
         }
-    });
+    } catch (error) {
+        console.error("Error fetching recipes:", error);
+        resultsContainer.innerHTML = "";
+        
+        const errorMessage = document.createElement("div");
+        errorMessage.className = "no-results";
+        errorMessage.innerHTML = `
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p>Something went wrong while searching for recipes. Please try again later.</p>
+        `;
+        resultsContainer.appendChild(errorMessage);
+    }
 });

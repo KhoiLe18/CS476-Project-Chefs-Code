@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <ul>`;
         
         // Add ingredients
-        if (recipe.extendedIngredients && recipe.extendedIngredients.length > 0) {
+        if (recipe.extendedIngredients && recipe.extendedIngredients.length > 0) 
+        {
             recipe.extendedIngredients.forEach(ingredient => {
                 html += `<li>${ingredient.original || ingredient.originalString || ingredient.name}</li>`;
             });
@@ -101,8 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const keyNutrients = ['Calories', 'Fat', 'Carbohydrates', 'Protein', 'Fiber', 'Sugar', 'Sodium', 'Cholesterol'];
             
-            recipe.nutrition.nutrients.forEach(nutrient => {
-                if (keyNutrients.includes(nutrient.name)) {
+            recipe.nutrition.nutrients.forEach(nutrient => 
+                {
+                if (keyNutrients.includes(nutrient.name)) 
+                    {
                     html += `
                         <div class="nutrition-item">
                             <div class="nutrition-value">${Math.round(nutrient.amount)} ${nutrient.unit}</div>
