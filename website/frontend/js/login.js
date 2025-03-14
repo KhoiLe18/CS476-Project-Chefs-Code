@@ -1,18 +1,17 @@
-let loginButton = document.getElementById("subButton");
-let userLogin = document.getElementById("userLogin");
+let loginButton = document.getElementById("login");
 
 loginButton.addEventListener("click", async (event) => {
     event.preventDefault();
     // get input in username input bar, and save it in variable username
-    const username = document.getElementById("uname").value;
+    const email = document.getElementById("email").value;
     //console.log(username);
     // get input from password search bar
-    const password = document.getElementById("pwd").value;
+    const password = document.getElementById("password").value;
     //console.log(password);
 
     // put all input into an object to send away to the backend api recipe fetch function
-    const requestData = {
-        username: username,
+    const data = {
+        email: email,
         password: password
     };
 
@@ -23,11 +22,10 @@ loginButton.addEventListener("click", async (event) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData)
+        body: JSON.stringify(data)
     };
     //console.log("Is it working here...?");
-    fetch('/adminLogin', options).then(async response => {
-    console.log("Information sent! We should have a response...");
+    fetch('/login', options).then(async response => {
 
     //Get the response in json format and save it into variable json. 
     //The response will let us know if there was a username + password combo match in our database! (check backend for this logic)
@@ -40,7 +38,7 @@ loginButton.addEventListener("click", async (event) => {
     {
       // Redirect or update UI for successful login
       console.log("Login successful!");
-      window.location.href = "adminMainpage.html";
+      window.location.href = "index.html";
     } 
     
     //In any other case, success = false, so the login has failed. Print out the error message to the user.
@@ -61,10 +59,6 @@ loginButton.addEventListener("click", async (event) => {
   });
 });
 
-/*
-userLogin.addEventListener("click", async (event) => {
-  window.location.href = "login.html";
 
-});
 
-*/
+

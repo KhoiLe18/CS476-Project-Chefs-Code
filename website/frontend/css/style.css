@@ -1,46 +1,107 @@
+/* Google font - poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 260px;
+    background: #11101d;
+    padding: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    padding: 0 45px;
+}
+
+.menu-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-title {
+    color: #fff;
+    font-size: 15px;
+    padding: 0 58px 15px;
+}
+
+.item a {
+    padding: 14px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.item a:hover {
+    background: rgba(255, 255, 255, 0.1)
+}
+
+.item a i {
+    margin-right: 10px;
+}
+
+.navbar,
+.main {
+    left: 260px;
+    width: calc(100% - 260px);
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.sidebar.close ~ .navbar,
+.sidebar.close ~ .main {
+    left: 0;
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    background: #fff;
+    color: #11101d;
+    padding: 12px 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.navbar #sidebar-close {
+    cursor: pointer;
+}
+
+.main {
+    position: relative;  
+    height: 100vh;
+    z-index: 100;
+    background: #e7f2fd;
+    padding-top: 65px;
+}
+
+
+
+
 body {
     font-family: sans-serif;
     background-color: #f3f4f6;
     margin: 0;
     padding: 0;
-}
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: white;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.sidebar.show {
-    transform: translateX(0);
-}
-
-.sidebar-header {
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    border-bottom: 1px solid #ddd;
-}
-
-.sidebar-menu {
-    list-style: none;
-    padding: 20px;
-}
-
-.sidebar-menu li {
-    margin-bottom: 15px;
-}
-
-.sidebar-menu a {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
 }
 
 .main-content {

@@ -112,7 +112,9 @@ footer p {
 }
 
     </style>
+    
 </head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <body>
     <div id="container-Signup">
         <header id="header-auth">
@@ -152,11 +154,10 @@ footer p {
                 </p>
 
                 
-                <!-- Google reCAPTCHA -->
+                 <!-- Google reCAPTCHA -->
+                <div class="g-recaptcha" data-sitekey="6LcBx_AqAAAAAOKmR1Faju5rAR8AxqwtN4Uf2DoG"></div>
 
-                <p class="input-field">
-                    <input type="submit" id="submit" class="form-submit" value="Signup" />
-                </p>
+                <button type="button" id="submit">Submit</button>
                 <p id="signup-message" class="error-text hidden"></p>
 
             </form>
@@ -165,6 +166,95 @@ footer p {
             </div>
         </main>
     </div>
-    <script src="js/signup.js"></script>
+    
 </body>
+<script>
+    let signupForm = document.getElementById("submit");
+    
+    signupForm.addEventListener("click", async (event) => 
+     {
+        event.preventDefault();
+    
+        // Get input values
+        const firstName = document.getElementById("fname").value;
+        
+        const lastName = document.getElementById("lname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("cpassword").value;
+        
+        const recaptchaResponse = grecaptcha.getResponse();
+
+         // Clear previous error messages
+        document.querySelectorAll(".error-text").forEach(el => el.style.display = "none");
+
+        let valid = true;
+
+    // Validate password length
+        if (password.length < 6) {
+            displayMessage("Password must be at least 6 characters long", "error", "error-text-password");
+            valid = false;
+        }
+
+    // Validate passwords match
+        if (password !== confirmPassword) {
+            displayMessage("Passwords do not match", "error", "error-text-cpassword");
+            valid = false;
+        }
+
+        if (!recaptchaResponse) {
+            displayMessage("Please complete the reCAPTCHA", "error");
+            valid = false;
+        }
+    
+        if (!valid) return;
+    
+        const data = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            cpassword: confirmPassword,
+            recaptcha: recaptchaResponse,
+        };
+    
+        console.log("sending data", data);
+    
+        // Set up fetch options
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        };
+    
+       
+    
+        try {
+            const response = await fetch("/signup", options);
+            const json = await response.json();
+            console.log(json);
+    
+            if (json.success) {
+                console.log("Signup successful!");
+                window.location.href = "login.html";
+            } else {
+                displayMessage(json.message || "Signup failed", "error");
+            }
+        } catch (error) {
+            console.error("Error during fetch:", error);
+            displayMessage("An error occurred. Please try again.", "error");
+        }
+        
+    });
+    
+    function displayMessage(message, type) {
+        const messageElement = document.getElementById("signup-message");
+        messageElement.textContent = message;
+        messageElement.style.display = "block";
+        messageElement.className = type;
+    }
+    
+    </script>
 </html>
