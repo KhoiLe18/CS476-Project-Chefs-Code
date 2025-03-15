@@ -18,90 +18,62 @@
             <ul class="menu-items">
                 <div class="menu-title">Welcome, User</div>
 
-                <!--Find Recipe button to go to search page-->
+                <!-- Find Recipe button to go to search page -->
                 <li class="item">
                     <a href="index.html">
                         <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
                     </a>
                 </li>
 
-                <!--Favorite button to go to favorite page, put link-->
-
-                    <li class="item">
-                        <a href="login.html">
-                            <i class="fa-solid fa-share-from-square"></i> Logout
-                        </a>
-                    </li>
-
-                
-
+                <!-- Favorite button to go to favorite page, put link -->
+                <li class="item">
+                    <a href="login.html">
+                        <i class="fa-solid fa-share-from-square"></i> Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!--The sidebar menu button at the navbar-->
-    <nav class="navbar">
-        <i class="fa-solid fa-bars" id="sidebar-close"></i>
-    </nav>
-
+  
     <!--The Search and Filter engine-->
-    <main class="main">
-        <section class="dashboard">
-            <h1>Favourites Dashboard</h1>
+    
+     <div id="container-jokelist">
+         <header id="header-jokelist">
+             <h1>Chef's Code</h1>
+         </header>
+ 
+         <section id="joke-box">
+             <aside id="list-of-jokes">
+                 <h2>Favourites List</h2>
+                 <div class="listofjoke">
+                     <section>
+                         <p class="p1">
+                                  
+                            <p class="input-field">
+                                <button type="button" id="removeBut">Unfavorite</button>                   
+                             </p>
+                         </p>
 
-            <!-- Recipe Filter Section -->
-            <div class="recipe-filter">
-                <input type="text" id="searchIngredients" placeholder="Search Favourites by Ingredients">
-                <button class="search-btn" id="searchBtn">Search</button>
-            </div>
-
-            <!-- Favourited Recipes Section -->
-            <section class="recipes-container" id="favourite-recipes">
-                <div class="recipe-card">
-                    <img src="user-3296.png" alt="Tomato Soup" class="recipe-image">
-                    <div class="recipe-details">
-                        <a href="recipe-detail.html" class="recipe-title">Tomato Soup</a>
-                        <p class="recipe-description">
-                            <span class="icon-container">
-                                <span class="fa fa-bookmark saved" onclick="toggleSave(this)"></span>
-                                <span class="fa fa-heart-o" onclick="toggleHeart(this)"></span>
-                                <span class="fa fa-share" onclick="toggleShare(this)"></span>
-                            </span>
-                        </p>
-                        <article>
-                            <h4>Ingredients:</h4>
-                            <p>Tomatoes, broth, garlic, onion, olive oil, and seasonings</p>
-                            <h3>Recipe:</h3>
-                            <p>Prepare the ingredients and cook following the steps...</p>
-                        </article>
-                    </div>
-                </div>
-
-                <!-- Example Favourited Recipe -->
-                <div class="recipe-card">
-                    <img src="user-3296.png" alt="Pasta" class="recipe-image">
-                    <div class="recipe-details">
-                        <a href="recipe-detail.html" class="recipe-title">Pasta Primavera</a>
-                        <p class="recipe-description">
-                            <span class="icon-container">
-                                <span class="fa fa-bookmark saved" onclick="toggleSave(this)"></span>
-                                <span class="fa fa-heart-o" onclick="toggleHeart(this)"></span>
-                                <span class="fa fa-share" onclick="toggleShare(this)"></span>
-                            </span>
-                        </p>
-                        <article>
-                            <h4>Ingredients:</h4>
-                            <p>Pasta, mixed vegetables, olive oil, garlic, and parmesan</p>
-                            <h3>Recipe:</h3>
-                            <p>Boil the pasta, sauté the vegetables, mix with pasta...</p>
-                        </article>
-                    </div>
-                </div>
-
-                <!-- Repeat as necessary for more favourited recipes -->
-            </section>
-        </section>
-    </main>
-
-</body>
-</html>
+                         <h2>
+                            <a class="detailpage" href="jokedetails.html"></a>
+                        </h2>
+                        
+                         <article>
+                             <h3>
+                                 Instructions:
+                             </h3>
+                             <p class="p1" id = "instructions">
+                             </p>
+                         </article>
+                     </section>
+                     
+                 </div>
+             </aside>
+         </section>
+         <footer id="footer-login-history">
+             <p class="footer-text">Chef's Code</p>
+         </footer>
+     </div>
+ </body>
+ </html>

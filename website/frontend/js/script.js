@@ -137,6 +137,8 @@ searchButton.addEventListener("click", async (event) => {
                         const json = await response.json();
                         console.log("Here are the results!");
                         console.log(json.instructions);
+                        console.log(json.ingredient);
+                        console.log(json.title);
 
                         // Save recipe data to localStorage so the details page can access it
                         localStorage.setItem('recipeDetails', JSON.stringify(json));
