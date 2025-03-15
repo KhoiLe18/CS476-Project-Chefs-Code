@@ -7,166 +7,115 @@
      <title>Login</title>
 <style>
 
-/* Common CSS styles for all the files begins */
-@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 body {
-    background-image: url("image.png");
-    background-size: cover; /* Ensures the image covers the entire screen */
-    background-position: center center; /* Centers the image */
-    background-attachment: fixed; /* Keeps the image fixed when scrolling */
-    background-repeat: no-repeat;
-    background-blend-mode: lighten;
-    font-family: 'DM Serif Text', serif; /* Apply DM Serif Text font to the body */
-}
-#container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    grid-template-rows: 150px auto 100px;
-    grid-gap: 5px;
-    min-height: 100vh;
-    width: 100vw;
-}
+            background-image: url("./css/image.png");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-blend-mode: lighten;
+            font-family: 'DM Serif Text', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-#header-auth {
-    background-color: rgb(95, 74, 6);
-    opacity: 0.9;
-    color: lightyellow;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-a {
-    color: black;
-}
-header h1 {
-    font-size: 70px;
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    font-family: 'Merriweather', serif; /* Apply Merriweather for headings */
-}
-#main-left {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-#main-center {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-#main-right {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-#footer-auth {
-    background-color: rgb(95, 74, 6);
-    color: lightyellow;
-    width: 100%;
-    text-align: center;
-    opacity: 0.9;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
-}
-.login {
-    margin-top: 30px;
-    border: 1px solid rgb(95, 74, 6);
-    opacity: 0.9;
-    border-radius: 60px;
-    padding: 20px 20px 40px 20px;
-    width: 100%;
-    background-color: rgb(95, 74, 6);
-    padding: 40px;
-}
-input {
-    float: right;
-    border-radius: 7px;
-    padding: 5px;
-    width: 70%;
-}
-.input-field {
-    width: auto;
-    margin: 10px;
-    padding: 3px 3px;
-    color: black;
-}
+        #container-Signup {
+            background: rgba(50, 50, 50, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 380px;
+            color: white;
+        }
 
-.footer-text {
-    margin-top: 35px;
-    font-size: 20px;
-}
-/* CSS styles for loginHistory.html begins */
+        h1 {
+            font-size: 32px;
+            font-family: 'Merriweather', serif;
+            margin-bottom: 20px;
+            color: #f8b400;
+        }
 
-img {
-    width: 100%;
-    border: 1px solid;
-    border-radius: 10px;
-}
-h2 {
-    color: lightyellow;
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-section {
-    color: lightyellow;
-}
-img {
-    width: 100%;
-    border: 1px solid rgb(95,74,6);
-    opacity: 0.9;
-    border-radius: 10px;
-}
-aside {
-    padding-left: 30px;
-}
-#user-data {
-    padding: 0px 0px 30px 20px;
-    margin: 20px 0px;
-    border: 1px solid #dedede;
-    border-radius: 10px;
-}
+        .input-field {
+            margin: 15px 0;
+            text-align: left;
+        }
 
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.error-box {
-    border: 5px rgb(31, 26, 5) solid;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #777;
+            font-size: 16px;
+            background: #333;
+            color: white;
+        }
 
-#login-message {
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 5px;
-    display: none;
-}
+        button {
+            background: #f8b400;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-.error {
-    background-color: #ffeeee;
-    color: #ff0000;
-    border: 1px solid #ffcccc;
-}
+        button:hover {
+            background: #c79100;
+        }
 
-.success {
-    background-color: #eeffee;
-    color: #008800;
-    border: 1px solid #ccffcc;
-}
+        .error-text {
+            background: rgba(255, 77, 77, 0.9);
+            color: white;
+            border: 1px solid #ff1a1a;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            display: none;
+            font-weight: bold;
+            text-align: center;
+        }
 
-.deletion-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #f5c6cb;
-    border-radius: 4px;
-    display: none;
-}
+        .foot-note {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .foot-note a {
+            color: #f8b400;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .foot-note a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 20px;
+            background: #222;
+            color: #f8b400;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
 </style>> 
 </head>
  

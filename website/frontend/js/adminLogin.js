@@ -49,15 +49,19 @@ loginButton.addEventListener("click", async (event) => {
       // Show error message
       console.log("Login failed:", json.message);
 
-      const loginMessage = document.getElementById("login-message"); 
-        loginMessage.textContext = "Does this work?";
-        loginMessage.style.display = "block";
-        loginMessage.className = "error";
+      const loginMessage = document.getElementById("login-message");
+            loginMessage.textContent = json.message || "Invalid credentials. Please try again.";  // Display the error message
+            loginMessage.style.display = "block";  // Make the error message visible
+            loginMessage.className = "error";  // Add error styling class
       
     }
   })
   .catch(error => {
     console.error("Error during fetch:", error);
+    const loginMessage = document.getElementById("login-message");
+    loginMessage.textContent = "An error occurred. Please try again later.";  // Display error message
+    loginMessage.style.display = "block";  // Make the error message visible
+    loginMessage.className = "error";  // Add error styling class
   });
 });
 
