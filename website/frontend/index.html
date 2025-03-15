@@ -11,6 +11,7 @@
 </head>
 <body>
 
+    <!--Sidebar Menu-->
     <nav class="sidebar">
         <a href="#" class="logo">Dashboard</a>
 
@@ -18,26 +19,30 @@
             <ul class="menu-items">
                 <div class="menu-title">Welcome, User</div>
 
+                <!--Find Recipe button to go to search page-->
                 <li class="item">
-                    <a href="#">
+                    <a href="index.html">
                         <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
                     </a>
                 </li>
 
+                <!--Favorite button to go to favorite page, put link-->
                 <li class="item">
                     <a href="#">
                         <i class="fa-solid fa-heart"></i> Favorites
                     </a>
                 </li>
 
+                <!--User Setting button to go to user setting page, put link-->
                 <li class="item">
                     <a href="#">
                         <i class="fa-solid fa-sliders"></i> User Settings
                     </a>
                 </li>
 
+                <!--Logout button to go back to sign up page, put link-->
                 <li class="item">
-                    <a href="#">
+                    <a href="signup.html">
                         <i class="fa-solid fa-share-from-square"></i> Logout
                     </a>
                 </li>
@@ -48,21 +53,26 @@
         </div>
     </nav>
 
+    <!--The sidebar menu button at the navbar-->
     <nav class="navbar">
         <i class="fa-solid fa-bars" id="sidebar-close"></i>
         
     </nav>
 
+    <!--The Search and Filter engine-->
     <main class="main">
 
         <section class="hero">
             <div class="hero-section">
                 <h1>Find recipes with the ingredients you have!</h1>
                 <h2>Enter your ingredients, separated by commas: </h2>
+
+                <!--The search bar-->
                 <input type="text" placeholder="(e.g., flour, potato, eggs)" class="search-bar" id = "ingredInput">
 
                 <h3>Filters (optional):</h3>
 
+                <!--The select drop down filters of Cuisine Type and Diet Restriction-->
                 <div class="filters">
                     <select class="dropdown" id = "cuisine">
                         <option selected disabled>Cuisine Type</option>
@@ -81,6 +91,7 @@
                     </select>
                 </div>
 
+                <!--The submit button, also change color when hover-->
                 <button class="submit-button" id = "subButton">Submit</button>
 
             </div>

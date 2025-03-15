@@ -178,10 +178,14 @@ body {
 
 .recipes {
     background-color: #fff;
+    padding: 15px;
 }
 
-.h4 {
-    padding: 10px;
+h4 {
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
 }
 
 .filters {
