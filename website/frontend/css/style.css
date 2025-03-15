@@ -78,7 +78,7 @@
     position: fixed;
     background: #fff;
     color: #11101d;
-    padding: 12px 20px;
+    padding: 10px 20px;
     font-size: 25px;
     cursor: pointer;
 }
@@ -92,21 +92,54 @@
     height: 100vh;
     z-index: 100;
     background: #e7f2fd;
-    padding-top: 60px;
+    padding-top: 58px;
 }
 
 .hero {
     width: 100%;
     height: 280px;
-    background: url(darkbrown.jpg);
+    background: url(choppedboard.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-position: left top;
-
+    background-position: top right;
+    color: #fff;
+    text-align: center;
+    padding: 24px 0;
 }
 
+.hero h1 {
+    font-size: 32px;
+    font-family: "Georgia";
+    margin-bottom: 8px;
+    font-weight: bold;
+}
 
+.hero h2 {
+    font-size: 15px;
+    font-family: Arial;
+    margin-bottom: 5px;
+    font-weight: 500;
+    padding-top: 10px;
+}
+
+.search-bar {
+    max-width: 1500px;
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    width: 45%;
+    padding: 8px;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: black;
+}
 
 
 body {
@@ -135,12 +168,7 @@ body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+
 
 .filters {
     display: flex;
