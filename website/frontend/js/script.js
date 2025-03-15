@@ -7,6 +7,7 @@ sidebarClose.addEventListener("click", () =>
 
 
 document.addEventListener("DOMContentLoaded", function() {
+
     document.querySelector(".submit-button").addEventListener("click", function() {
         const ingredient = document.querySelector(".search-bar").value;
         const cuisine = document.querySelector(".dropdown:first-of-type").value;
@@ -19,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Placeholder for fetching and displaying recipes
         document.querySelector(".results-container").innerHTML = `<p>Searching recipes with ${ingredient}, ${cuisine}, ${dietary}...</p>`;
-        console.log("User signed in is ", localStorage.getItem("userId"));
     });
     
     // Add event listener for cancel button to close the dashboard

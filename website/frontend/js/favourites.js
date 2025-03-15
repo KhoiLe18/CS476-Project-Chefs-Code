@@ -9,3 +9,10 @@ function toggleSave(element) {
         element.classList.replace('fa-bookmark-o', 'fa-bookmark');
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    console.log("Favourites page loaded! User logged in is ", localStorage.getItem("userId"));
+});
+
+
