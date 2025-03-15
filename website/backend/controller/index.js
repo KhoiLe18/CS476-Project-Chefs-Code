@@ -287,3 +287,41 @@ app.post('/login', async (req, res) => {
     }
         
 });
+
+
+
+app.post('/addfavourites', async (req, res) => {
+    const recipeId = req.body.recipeId;
+    const userId = req.body.userId;
+
+    try {
+        const conn = await pool.getConnection();
+
+        //first, check if this recipe is already inserted in the database for this user
+        // Check if the recipe is already in the user's favorites
+        const checkQuery = "SELECT * FROM favourites WHERE recipe_id = ? AND user_id = ?";
+        const rows = await conn.query(checkQuery, [recipeId, userId]);
+
+        if (rows.length > 0) {
+            conn.release();
+            console.log("recipe is already in favourites");
+            res.json({ success: false, message: "Recipe is already in favorites" });
+        }
+
+        //else, we can continue to insert the recipe into the database
+        else
+        {
+            const query = "INSERT INTO favourites (recipe_id, user_id) VALUES (?, ?)";
+            await conn.query(query, [recipeId, userId]);
+            conn.release();
+    
+            res.json({ success: true, message: "Recipe added to favourites" });
+        }
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});
+
+

@@ -15,3 +15,31 @@
             cursor: pointer;
             font-size: 30px; /* Adjust size as needed */
         }
+
+
+
+        /* Style for the unfavorite button */
+#removeBut {
+    background-color: #ff4d4d; /* Red color to indicate removal */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+#removeBut:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+/* Active (click) effect */
+#removeBut:active {
+    background-color: #a30000;
+    transform: scale(0.95);
+}
