@@ -44,6 +44,22 @@
     transform: scale(0.95);
 }
 
+
+
+/* Style for the recipe title link to match the unfavorite button's hover effect */
+a.detailpage {
+    text-decoration: none; /* Remove default underline */
+    color: white; /* Set text color */
+    font-weight: bold; /* Make title bold */
+    transition: color 0.3s, transform 0.2s;
+}
+
+/* Hover effect for the recipe title */
+a.detailpage:hover {
+    color: #ff4d4d; /* Change text color to red on hover */
+    transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
 /* Style for the recipe title link to match the unfavorite button's hover effect */
 a.detailpage {
     text-decoration: none; /* Remove default underline */
