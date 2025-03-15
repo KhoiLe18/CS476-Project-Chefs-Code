@@ -270,7 +270,7 @@ app.post('/login', async (req, res) => {
         
         if (rows.length > 0)
         {
-            res.json({success: true, message: "Login successful"});
+            res.json({success: true, message: "Login successful", user_id: rows[0].user_id});
             console.log("Credentials Valid!! :)", res.message)
         }
         else

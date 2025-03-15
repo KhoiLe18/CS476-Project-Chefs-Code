@@ -33,7 +33,7 @@ loginButton.addEventListener("click", async (event) => {
     console.log(json);  // Log the entire response object first to see what we're working with
     
     // Handle the response appropriately
-    //if success was sent back as true, then a match was found! Redirect admin user to adminMainpage.html
+    //if success was sent back as true, then a match was found! Save the user id of the person who has logged in into local storage and redirect user to index.html
     if (json.success) 
     {
       // Redirect or update UI for successful login
