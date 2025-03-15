@@ -6,6 +6,8 @@ sidebarClose.addEventListener("click", () =>
     sidebar.classList.toggle("close"))
 
 
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelector(".submit-button").addEventListener("click", function() {
