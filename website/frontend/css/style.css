@@ -18,8 +18,14 @@
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 23px;
     padding: 0 45px;
+    font-weight: 600;
+}
+
+span {
+    padding-left: 800px;
+
 }
 
 .menu-content {
@@ -220,7 +226,6 @@ button:hover {
 }
 
 .results-container {
-    margin-top: 20px;
     padding: 20px;
     background: white;
     border-radius: 8px;
