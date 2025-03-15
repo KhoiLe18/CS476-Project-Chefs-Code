@@ -238,4 +238,8 @@ button:hover {
     text-align: center;
 }
 
-
+@media only screen and (max-width: 768px) {
+    .hero h2 {
+        font-size: 10px;
+    }
+}
