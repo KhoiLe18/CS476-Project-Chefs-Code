@@ -95,6 +95,13 @@
     padding-top: 65px;
 }
 
+.hero {
+    width: 100%;
+    height: 400px;
+    background: url(choppedboard.jpg);
+
+}
+
 
 
 
