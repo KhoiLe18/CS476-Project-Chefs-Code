@@ -289,7 +289,7 @@ app.post('/login', async (req, res) => {
 });
 
 
-
+//FOR ADDING A FAVOURITE RECIPE TO USER FAVOURITES
 app.post('/addfavourites', async (req, res) => {
     const recipeId = req.body.recipeId;
     const userId = req.body.userId;
@@ -325,3 +325,39 @@ app.post('/addfavourites', async (req, res) => {
 });
 
 
+//FOR DISPLAYING A USER'S FAVOURITED RECIPES
+app.post('/favourites', async (req, res) => {
+    const userId = req.body.userId;
+
+    try {
+        const conn = await pool.getConnection();
+        const query = "SELECT recipe_id FROM favourites WHERE user_id = ?";
+        const rows = await conn.query(query, [userId]);
+        conn.release();
+
+        if (rows.length === 0) {
+            return res.json([]);
+        }
+
+        const api_key = "2fad0aa51e7a4e4398d7dc8fcd94dc66"; 
+
+        // Fetch recipe details for each favourited recipe
+        const recipeDetails = await Promise.all(rows.map(async (row) => {
+            const api_url = `https://api.spoonacular.com/recipes/${row.recipe_id}/information?apiKey=${api_key}`;
+            const fetch_response = await fetch(api_url);
+            const recipeData = await fetch_response.json();
+
+            return {
+                id: row.recipe_id,
+                title: recipeData.title,
+                instructions: recipeData.instructions,
+            };
+        }));
+
+        res.json(recipeDetails);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});

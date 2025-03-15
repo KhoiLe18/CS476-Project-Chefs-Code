@@ -19,7 +19,7 @@
 
 
         /* Style for the unfavorite button */
-#removeBut {
+.removeBut {
     background-color: #ff4d4d; /* Red color to indicate removal */
     color: white;
     border: none;
@@ -33,13 +33,13 @@
 }
 
 /* Hover effect */
-#removeBut:hover {
+.removeBut:hover {
     background-color: #cc0000;
     transform: scale(1.05);
 }
 
 /* Active (click) effect */
-#removeBut:active {
+.removeBut:active {
     background-color: #a30000;
     transform: scale(0.95);
 }
