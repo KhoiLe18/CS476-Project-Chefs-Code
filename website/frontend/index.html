@@ -59,7 +59,30 @@
             <div class="hero-section">
                 <h1>Find recipes with the ingredients you have!</h1>
                 <h2>Enter your ingredients, separated by commas: </h2>
-                <input type="text" placeholder="(e.g., potato, flour, butter)" class="search-bar" id = "ingredInput">
+                <input type="text" placeholder="(e.g., flour, potato, eggs)" class="search-bar" id = "ingredInput">
+
+                <h3>Filters (optional):</h3>
+
+                <div class="filters">
+                    <select class="dropdown" id = "cuisine">
+                        <option selected disabled>Cuisine Type</option>
+                        <option>Italian</option>
+                        <option>Chinese</option>
+                        <option>Indian</option>
+                        <option>Mexican</option>
+                    </select>
+                    
+                    <select class="dropdown" id = "diet">
+                        <option selected disabled>Dietary Restriction</option>
+                        <option>Vegetarian</option>
+                        <option>Vegan</option>
+                        <option>Gluten-Free</option>
+                        <option>Keto</option>
+                    </select>
+                </div>
+
+                <button class="submit-button" id = "subButton">Submit</button>
+
             </div>
         </section>
 
