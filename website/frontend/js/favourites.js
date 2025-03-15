@@ -84,5 +84,28 @@ document.addEventListener("DOMContentLoaded", async function() {
 });
 
 
-//This function will be called when the user clicks on the "Remove" button
+//This function will be called when the user clicks on the "unfavorite" button
+async function removeFromFavourites(recipeId) {
+    const userId = JSON.parse(localStorage.getItem("userId"));
 
+    if (!userId) {
+        alert("User not logged in.");
+        return;
+    }
+
+    try {
+        // Send a request to the backend to remove the recipe from favourites
+        const response = await fetch('/removeFromFavourites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId, recipeId })
+        });
+
+        const result = await response.json();
+        console.log("Removed from favourites:", result);
+    } catch (error) {
+        console.error("Error removing from favourites:", error);
+    }
+}
