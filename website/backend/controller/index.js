@@ -5,7 +5,7 @@ const pool = require('../model/db');
 const cors = require('cors');
 
 const app = express();
-app.listen(3000, () => console.log('listening at 3000'));
+app.listen(3001, () => console.log('listening at 3000'));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page

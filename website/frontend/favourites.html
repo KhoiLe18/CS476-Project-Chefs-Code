@@ -1,103 +1,107 @@
 <!DOCTYPE html>
- <html>
- 
- <head>
-     <title>Chef's Code</title>
-     <link rel="stylesheet" type="text/css" href="css/login.css" />
-     <link rel="stylesheet" href="./css/favourites.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-     <script src="./js/favourites.js"></script>
-    
- </head>
- 
- <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef's Code - Favourites</title>
+    <link rel="stylesheet" type="text/css" href="css/favourites.css" />
+    <script src="./js/favourites.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
 
-    
-     <div id="container-jokelist">
-         <header id="header-jokelist">
-             <div class="right">
-                     <a class="logout" href="login.html">Logout</a></h3>
-             </div>
-             <h1>Chef's Code</h1>
-         </header>
- 
-         <section id="joke-box">
-             <aside id="list-of-jokes">
-                 <h2>Favourites List</h2>
-                 <div class="listofjoke">
-                     <section>
-                         <p class="p1">
-                                  
-                             <span class="icon-container">
-                                 <span class="fa fa-bookmark saved" onclick="toggleSave(this)"></span>
-                             </span>
-                         </p>
+    <!-- Sidebar Menu -->
+    <nav class="sidebar">
+        <a href="#" class="logo">Chefs Code</a>
 
-                         <h2>
-                            <a class="detailpage" href="jokedetails.html">Tomatoe Soup</a>
-                        </h2>
-                        
-                         <article>
-                             <h4>
-                                 List of Ingredients:
-                             </h4>
-                             <p class="p1">
-                                 Tomatoes (canned or fresh), broth (vegetable or chicken), onion, garlic, olive 
-                                 oil or butter, and seasonings like salt, pepper, and optionally, sugar
-                             </p>
-                             <h3>
-                                 Recipie:
-                             </h3>
-                             <p class="p1">
-                                 Saute Aromatics – heat a non-reactive pot over medium heat. Melt in 4 Tbsp butter then sautee onions until softened and golden (10-12 min). Add minced garlic and saute another minute.
-                                 Make the tomato soup base – stir in two 28 oz cans of crushed tomatoes with their juice, your chicken stock, chopped basil, sugar and black pepper. Bring to a boil then reduce heat, partially cover and simmer 10 minutes.
-                                 Blend if desired – use an immersion blender in the pot or blend in batches using a blender (be careful not to overfill the blender with hot liquid) and return soup to the pot.
-                                 Add cream and parmesan – stir in the heavy cream and shredded parmesan. Return to a simmer and season to taste if needed.
-                                 Serve – ladle into warm bowls and garnish with more parmesan and basi
-                             </p>
-                         </article>
-                     </section>
-                     <section>
-                         <div class="img">
-                             <img src="user-3296.png" alt="user" style="width:100px;">
-                         </div>
-                         <h2>
-                             <a class="detailpage" href="jokedetails.html">Tomatoe Soup</a>
-                         </h2>
-                         <p class="p1">
-                                  
-                             <span class="icon-container">
-                                 <span class="fa fa-bookmark saved" onclick="toggleSave(this)"></span>
-                                 <span class="fa fa-heart-o" onclick="toggleHeart(this)"></span>
-                                 <span class="fa fa-share" onclick="toggleShare(this)"></span>
-                             </span>
-                         </p>
-                         <article>
-                             <h4>
-                                 List of Ingredients:
-                             </h4>
-                             <p class="p1">
-                                 Tomatoes (canned or fresh), broth (vegetable or chicken), onion, garlic, olive 
-                                 oil or butter, and seasonings like salt, pepper, and optionally, sugar
-                             </p>
-                             <h3>
-                                 Recipie:
-                             </h3>
-                             <p class="p1">
-                                 Saute Aromatics – heat a non-reactive pot over medium heat. Melt in 4 Tbsp butter then sautee onions until softened and golden (10-12 min). Add minced garlic and saute another minute.
-                                 Make the tomato soup base – stir in two 28 oz cans of crushed tomatoes with their juice, your chicken stock, chopped basil, sugar and black pepper. Bring to a boil then reduce heat, partially cover and simmer 10 minutes.
-                                 Blend if desired – use an immersion blender in the pot or blend in batches using a blender (be careful not to overfill the blender with hot liquid) and return soup to the pot.
-                                 Add cream and parmesan – stir in the heavy cream and shredded parmesan. Return to a simmer and season to taste if needed.
-                                 Serve – ladle into warm bowls and garnish with more parmesan and basi
-                             </p>
-                         </article>
-                     </section>
-                 </div>
-             </aside>
-         </section>
-         <footer id="footer-login-history">
-             <p class="footer-text">Chef's Code</p>
-         </footer>
-     </div>
- </body>
- </html>
+        <div class="menu-content">
+            <ul class="menu-items">
+                <div class="menu-title">Welcome, User</div>
+
+                <!--Find Recipe button to go to search page-->
+                <li class="item">
+                    <a href="index.html">
+                        <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
+                    </a>
+                </li>
+
+                <!--Favorite button to go to favorite page, put link-->
+
+                    <li class="item">
+                        <a href="login.html">
+                            <i class="fa-solid fa-share-from-square"></i> Logout
+                        </a>
+                    </li>
+
+                
+
+            </ul>
+        </div>
+    </nav>
+
+    <!--The sidebar menu button at the navbar-->
+    <nav class="navbar">
+        <i class="fa-solid fa-bars" id="sidebar-close"></i>
+    </nav>
+
+    <!--The Search and Filter engine-->
+    <main class="main">
+        <section class="dashboard">
+            <h1>Favourites Dashboard</h1>
+
+            <!-- Recipe Filter Section -->
+            <div class="recipe-filter">
+                <input type="text" id="searchIngredients" placeholder="Search Favourites by Ingredients">
+                <button class="search-btn" id="searchBtn">Search</button>
+            </div>
+
+            <!-- Favourited Recipes Section -->
+            <section class="recipes-container" id="favourite-recipes">
+                <div class="recipe-card">
+                    <img src="user-3296.png" alt="Tomato Soup" class="recipe-image">
+                    <div class="recipe-details">
+                        <a href="recipe-detail.html" class="recipe-title">Tomato Soup</a>
+                        <p class="recipe-description">
+                            <span class="icon-container">
+                                <span class="fa fa-bookmark saved" onclick="toggleSave(this)"></span>
+                                <span class="fa fa-heart-o" onclick="toggleHeart(this)"></span>
+                                <span class="fa fa-share" onclick="toggleShare(this)"></span>
+                            </span>
+                        </p>
+                        <article>
+                            <h4>Ingredients:</h4>
+                            <p>Tomatoes, broth, garlic, onion, olive oil, and seasonings</p>
+                            <h3>Recipe:</h3>
+                            <p>Prepare the ingredients and cook following the steps...</p>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Example Favourited Recipe -->
+                <div class="recipe-card">
+                    <img src="user-3296.png" alt="Pasta" class="recipe-image">
+                    <div class="recipe-details">
+                        <a href="recipe-detail.html" class="recipe-title">Pasta Primavera</a>
+                        <p class="recipe-description">
+                            <span class="icon-container">
+                                <span class="fa fa-bookmark saved" onclick="toggleSave(this)"></span>
+                                <span class="fa fa-heart-o" onclick="toggleHeart(this)"></span>
+                                <span class="fa fa-share" onclick="toggleShare(this)"></span>
+                            </span>
+                        </p>
+                        <article>
+                            <h4>Ingredients:</h4>
+                            <p>Pasta, mixed vegetables, olive oil, garlic, and parmesan</p>
+                            <h3>Recipe:</h3>
+                            <p>Boil the pasta, sauté the vegetables, mix with pasta...</p>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Repeat as necessary for more favourited recipes -->
+            </section>
+        </section>
+    </main>
+
+</body>
+</html>

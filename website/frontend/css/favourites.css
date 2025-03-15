@@ -1,17 +1,181 @@
-         /* Remove underline from all links */
-         a {
-            text-decoration: none;
-        }
+/* Google font - poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-        /* Style the icons to be inline */
-        .icon-container {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 
-        /* Increase the size of the icons */
-        .fa {
-            cursor: pointer;
-            font-size: 30px; /* Adjust size as needed */
-        }
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 260px;
+    background: #11101d;
+    padding: 15px;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 23px;
+    padding: 0 45px;
+    font-weight: 600;
+}
+
+span {
+    padding-left: 800px;
+
+}
+
+.menu-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-title {
+    color: #fff;
+    font-size: 15px;
+    padding: 0 58px 15px;
+}
+
+.item a {
+    padding: 14px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.item a:hover {
+    background: rgba(255, 255, 255, 0.1)
+}
+
+.item a i {
+    margin-right: 10px;
+}
+
+.navbar,
+.main {
+    left: 260px;
+    width: calc(100% - 260px);
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.sidebar.close ~ .navbar,
+.sidebar.close ~ .main {
+    left: 0;
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    background: #fff;
+    color: #11101d;
+    padding: 10px 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.navbar #sidebar-close {
+    cursor: pointer;
+}
+
+.recipe-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.recipe-filter input {
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.recipe-filter button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #5cb85c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Recipes Section */
+.recipes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.recipe-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-details {
+    padding: 15px;
+}
+
+.recipe-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.recipe-description {
+    margin: 10px 0;
+    color: #555;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-container span {
+    cursor: pointer;
+}
+
+.saved {
+    color: #f39c12;
+}
+
+.fa-heart-o {
+    color: #e74c3c;
+}
+
+.fa-share {
+    color: #3498db;
+}
+
+article {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
