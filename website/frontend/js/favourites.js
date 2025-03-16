@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", async function() {
 
     console.log("Favourites page loaded! User logged in is ", localStorage.getItem("userId"));
