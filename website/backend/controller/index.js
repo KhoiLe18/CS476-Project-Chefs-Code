@@ -288,3 +288,15 @@ app.post('/login', async (req, res) => {
     }
         
 });
+
+// FOR UPDATE USER INFO
+// Display user info:
+  // first_name
+  // last_name
+  // email
+// Options:
+  // Change first name
+	// Change last name
+	// Change email
+	// Change password
+	// Delete account
