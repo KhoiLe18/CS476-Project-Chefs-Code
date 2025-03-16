@@ -9,123 +9,94 @@
     <!--font awesome link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
-    <body>
+<body>
 
-        <nav class="sidebar">
-            <a href="#" class="logo">Dashboard</a>
+    <!--Sidebar Menu-->
+    <nav class="sidebar">
+        <a href="#" class="logo">Chefs Code</a>
 
-            <div class="menu-content">
-                <ul class="menu-items">
-                    <div class="menu-title">Welcome, User</div>
+        <div class="menu-content">
+            <ul class="menu-items">
+                <div class="menu-title">Welcome, User</div>
+
+                <!--Find Recipe button to go to search page-->
+                <li class="item">
+                    <a href="index.html">
+                        <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
+                    </a>
+                </li>
+
+                <!--Favorite button to go to favorite page, put link-->
+                <li class="item">
+                    <a href="favourites.html">
+                        <i class="fa-solid fa-heart"></i> Favorites
+                    </a>
+                </li>
+
+                
 
                     <li class="item">
-                        <a href="#">
-                            <i class="fa-solid fa-magnifying-glass"></i> Find Recipes
-                        </a>
-                    </li>
-
-                    <li class="item">
-                        <a href="#">
-                            <i class="fa-solid fa-heart"></i> Favorites
-                        </a>
-                    </li>
-
-                    <li class="item">
-                        <a href="#">
-                            <i class="fa-solid fa-sliders"></i> User Settings
-                        </a>
-                    </li>
-
-                    <li class="item">
-                        <a href="#">
+                        <a href="login.html">
                             <i class="fa-solid fa-share-from-square"></i> Logout
                         </a>
                     </li>
 
-                </ul>
-            </div>
-        </nav>
+                
 
-        <nav class="navbar">
-            <i class="fa-solid fa-bars" id="sidebar-close"></i>
-        </nav>
-
-        <main class="main">
-            <div class="main-content">
-                
-                <div class="search-container">
-                    <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
-                    
-                    <div class="filters">
-                        <select class="dropdown" id = "cuisine">
-                            <option selected disabled>Cuisine Type</option>
-                            <option>Italian</option>
-                            <option>Chinese</option>
-                            <option>Indian</option>
-                            <option>Mexican</option>
-                        </select>
-                        
-                        <select class="dropdown" id = "diet">
-                            <option selected disabled>Dietary Restrictions</option>
-                            <option>Vegetarian</option>
-                            <option>Vegan</option>
-                            <option>Gluten-Free</option>
-                            <option>Keto</option>
-                        </select>
-                    </div>
-                    
-                    <button class="submit-button" id = "subButton">Submit</button>
-                </div>
-                
-                
-                <div class="results-container" id = "results"></div>
-            </div>
-            
-        </main>
-
-        
-
-        <!--
-        
-        <div class="flex">
-        
-            
-            
-            
-            <div class="main-content">
-                
-                <div class="search-container">
-                    <input type="text" placeholder="Search by ingredient..." class="search-bar" id = "ingredInput">
-                    
-                    <div class="filters">
-                        <select class="dropdown" id = "cuisine">
-                            <option selected disabled>Cuisine Type</option>
-                            <option>Italian</option>
-                            <option>Chinese</option>
-                            <option>Indian</option>
-                            <option>Mexican</option>
-                        </select>
-                        
-                        <select class="dropdown" id = "diet">
-                            <option selected disabled>Dietary Restrictions</option>
-                            <option>Vegetarian</option>
-                            <option>Vegan</option>
-                            <option>Gluten-Free</option>
-                            <option>Keto</option>
-                        </select>
-                    </div>
-                    
-                    <button class="submit-button" id = "subButton">Submit</button>
-                </div>
-                
-                
-                <div class="results-container" id = "results"></div>
-            </div>
+            </ul>
         </div>
+    </nav>
+
+    <!--The sidebar menu button at the navbar-->
+    <nav class="navbar">
+        <i class="fa-solid fa-bars" id="sidebar-close"></i>
+    </nav>
+
+    <!--The Search and Filter engine-->
+    <main class="main">
+
+        <section class="engine">
+            <div class="engine-section">
+                <h1>Find recipes with the ingredients you have!</h1>
+                <h2>Enter your ingredients, separated by commas: </h2>
+
+                <!--The search bar-->
+                <input type="text" placeholder="(e.g., flour, potato, eggs)" class="search-bar" id = "ingredInput">
+
+                <h3>Filters (optional):</h3>
+
+                <!--The select drop down filters of Cuisine Type and Diet Restriction-->
+                <div class="filters">
+                    <select class="dropdown" id = "cuisine">
+                        <option selected disabled>Cuisine Type</option>
+                        <option>Italian</option>
+                        <option>Chinese</option>
+                        <option>Indian</option>
+                        <option>Mexican</option>
+                    </select>
+                    
+                    <select class="dropdown" id = "diet">
+                        <option selected disabled>Dietary Restriction</option>
+                        <option>Vegetarian</option>
+                        <option>Vegan</option>
+                        <option>Gluten-Free</option>
+                        <option>Keto</option>
+                    </select>
+                </div>
+
+                <!--The submit button, also change color when hover-->
+                <button class="submit-button" id = "subButton">Submit</button>
+
+            </div>
+        </section>
+
+        <section class="recipes">
+            <h4>Recipe Results:</h4>
+            <div class="results-container" id = "results"></div>
+
+        </section>
         
-        -->
+    </main>
 
-
-
-    </body>
+</body>
 </html>

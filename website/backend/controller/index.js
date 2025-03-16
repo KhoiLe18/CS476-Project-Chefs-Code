@@ -6,7 +6,6 @@ const cors = require('cors');
 
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
-app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
@@ -35,7 +34,7 @@ app.post('/api', async (request, response) => {
     const d = request.body.diet;
     console.log(d);
 
-    const api_key = "2fad0aa51e7a4e4398d7dc8fcd94dc66";
+    const api_key = "ba301abd0b6042e693747db118d36891";
 
     //now let's work on the response to send back! This is the part where we use the request data to search for recipes in the spoonacular API :)
 
@@ -61,7 +60,7 @@ app.post('/viewRecipe', async (request, response) => {
     const recipe_id = request.body.id;
     console.log(recipe_id);
 
-    const api = "2fad0aa51e7a4e4398d7dc8fcd94dc66"; 
+    const api = "ba301abd0b6042e693747db118d36891"; 
     const api_url = `https://api.spoonacular.com/recipes/${recipe_id}/information?apiKey=${api}`;
     const fetch_response = await fetch(api_url);
 
@@ -271,7 +270,7 @@ app.post('/login', async (req, res) => {
         
         if (rows.length > 0)
         {
-            res.json({success: true, message: "Login successful"});
+            res.json({success: true, message: "Login successful", user_id: rows[0].user_id});
             console.log("Credentials Valid!! :)", res.message)
         }
         else
@@ -289,14 +288,101 @@ app.post('/login', async (req, res) => {
         
 });
 
-// FOR UPDATE USER INFO
-// Display user info:
-  // first_name
-  // last_name
-  // email
-// Options:
-  // Change first name
-	// Change last name
-	// Change email
-	// Change password
-	// Delete account
+
+//FOR ADDING A FAVOURITE RECIPE TO USER FAVOURITES
+app.post('/addfavourites', async (req, res) => {
+    const recipeId = req.body.recipeId;
+    const userId = req.body.userId;
+
+    try {
+        const conn = await pool.getConnection();
+
+        //first, check if this recipe is already inserted in the database for this user
+        // Check if the recipe is already in the user's favorites
+        const checkQuery = "SELECT * FROM favourites WHERE recipe_id = ? AND user_id = ?";
+        const rows = await conn.query(checkQuery, [recipeId, userId]);
+
+        if (rows.length > 0) {
+            conn.release();
+            console.log("recipe is already in favourites");
+            res.json({ success: false, message: "Recipe is already in favorites" });
+        }
+
+        //else, we can continue to insert the recipe into the database
+        else
+        {
+            const query = "INSERT INTO favourites (recipe_id, user_id) VALUES (?, ?)";
+            await conn.query(query, [recipeId, userId]);
+            conn.release();
+    
+            res.json({ success: true, message: "Recipe added to favourites" });
+        }
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});
+
+
+//FOR DISPLAYING A USER'S FAVOURITED RECIPES
+app.post('/favourites', async (req, res) => {
+    const userId = req.body.userId;
+
+    try {
+        const conn = await pool.getConnection();
+        const query = "SELECT recipe_id FROM favourites WHERE user_id = ?";
+        const rows = await conn.query(query, [userId]);
+        conn.release();
+
+        if (rows.length === 0) {
+            return res.json([]);
+        }
+
+        const api_key = "ba301abd0b6042e693747db118d36891"; 
+
+        // Fetch recipe details for each favourited recipe
+        const recipeDetails = await Promise.all(rows.map(async (row) => {
+            const api_url = `https://api.spoonacular.com/recipes/${row.recipe_id}/information?apiKey=${api_key}`;
+            const fetch_response = await fetch(api_url);
+            const recipeData = await fetch_response.json();
+
+            return {
+                id: row.recipe_id,
+                title: recipeData.title,
+                instructions: recipeData.instructions,
+            };
+        }));
+
+        res.json(recipeDetails);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});
+
+
+
+//FOR DELETING A FAVOURITES RECIPE FROM USER FAVOURITES
+app.post('/removeFromFavourites', async (req, res) => {
+    const recipeId = req.body.recipeId;
+    const userId = req.body.userId;
+
+    try {
+        const conn = await pool.getConnection();
+        const query = "DELETE FROM favourites WHERE recipe_id = ? AND user_id = ?";
+        const result = await conn.query(query, [recipeId, userId]);
+        conn.release();
+
+        if (result.affectedRows > 0) {
+            res.json({ success: true, message: "Recipe removed from favourites" });
+        } else {
+            res.json({ success: false, message: "Recipe not found in favourites" });
+        }
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});
