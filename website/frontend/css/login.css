@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Merriweather&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-image: url("image.png");
     background-size: cover;
@@ -6,16 +14,16 @@ body {
     background-repeat: no-repeat;
     background-blend-mode: lighten;
     font-family: 'DM Serif Text', serif;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Ensures full screen height */
+    justify-content: center;
+    position: relative;
 }
 
-#container-Signup {
+/* Login Container */
+#container-Login {
     background: rgba(50, 50, 50, 0.95);
     padding: 40px;
     border-radius: 15px;
@@ -25,6 +33,7 @@ body {
     color: white;
 }
 
+/* Title */
 h1 {
     font-size: 32px;
     font-family: 'Merriweather', serif;
@@ -32,6 +41,7 @@ h1 {
     color: #f8b400;
 }
 
+/* Form fields */
 .input-field {
     margin: 15px 0;
     text-align: left;
@@ -56,7 +66,7 @@ input {
 button {
     background: #f8b400;
     border: none;
-    padding: 12px 15px;
+    padding: 12px;
     border-radius: 5px;
     font-size: 18px;
     color: white;
@@ -68,18 +78,6 @@ button {
 
 button:hover {
     background: #c79100;
-}
-
-.error-text {
-    background: rgba(255, 77, 77, 0.9);
-    color: white;
-    border: 1px solid #ff1a1a;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    display: none;
-    font-weight: bold;
-    text-align: center;
 }
 
 .foot-note {
@@ -97,8 +95,8 @@ button:hover {
     text-decoration: underline;
 }
 
+/* Footer Fix */
 footer {
-    margin-top: 20px;
     background: #222;
     color: #f8b400;
     padding: 10px;
@@ -106,4 +104,6 @@ footer {
     width: 100%;
     position: absolute;
     bottom: 0;
+    left: 0;
 }
+

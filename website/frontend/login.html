@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+ <html>
+ 
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+ 
+ <body>
+     <div id="container-Login">
+         <header id="header-auth">
+             <h1>Login</h1>
+         </header>
+         <main id="main-center">
+             <form id="login">
+                 <p class="input-field">
+                     <label for="uname">Email:</label> <!-- label for the username input -->
+                     <input type="text" placeholder="Enter the Email Address" name="email" id="email" /> <!-- username input box -->
+                 </p>
+                 <p class="input-field">
+                     <label for="pwd">Password:</label><!-- label for the password input -->
+                     <input type="password" placeholder="Enter the Password" name="pwd" id="password" /><!-- password input box -->
+                 </p>
+                 <p id="login-message" class="error" style="display: none;"></p>
+                 <p class="input-field">
+                    <button type="button" id="loginBut">Login</button>        
+           
+                 </p>
+             </form>
+             <div class="foot-note">
+                     <a href="signup.html">Do not have an account? Signup</a><!-- add login link -->
+                        <br>
+                     <a href="adminPage.html">Are you an Admin? Log in here</a>
+                 
+             </div>
+             <div id="deletion-message" class = "deletion-message"></div>
+         </main>
+        
+         <footer id="footer-auth">
+             <p class="footer-text"> Chef's Code</p>
+         </footer>
+     </div>
+ <script>
+    let loginButton = document.getElementById("loginBut");
+
+    loginButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    // get input in username input bar, and save it in variable username
+    const email = document.getElementById("email").value;
+    //console.log(username);
+    // get input from password search bar
+    const password = document.getElementById("password").value;
+    //console.log(password);
+    
+    const loginMessage = document.getElementById("login-message");
+    loginMessage.textContent = "";
+    loginMessage.style.display = "none";
+
+    // put all input into an object to send away to the backend api recipe fetch function
+    const data = {
+        email: email,
+        password: password
+    };
+
+    // console.log(requestData)
+    // set up the options for the post method, which requests data to our end point in the backend called /admiLogin in index.js
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    };
+    //console.log("Is it working here...?");
+    fetch('/login', options).then(async response => {
+
+    //Get the response in json format and save it into variable json. 
+    //The response will let us know if there was a username + password combo match in our database! (check backend for this logic)
+    const json = await response.json();
+    //console.log("This is what we got fam", json);  // Log the entire response object first to see what we're working with
+    
+    // Handle the response appropriately
+    //if success was sent back as true, then a match was found! Save user id in localstorage and redirect user to index.html
+    if (json.success) 
+    {
+        // Save user id in local storage
+        localStorage.setItem("userId", json.user_id);
+        console.log("This is in local storage!!", localStorage.getItem("userId"));
+      // Redirect or update UI for successful login
+      console.log("Login successful!");
+      window.location.href = "index.html";
+    } 
+    
+    //In any other case, success = false, so the login has failed. Print out the error message to the user.
+    else 
+    {
+      // Show error message
+      loginMessage.textContent = json.message || "Invalid email or password.";
+            loginMessage.style.display = "block";
+            loginMessage.className = "error";
+      
+    }
+  })
+  .catch(error => {
+    console.error("Error during fetch:", error);
+        loginMessage.textContent = "An error occurred. Please try again later.";
+        loginMessage.style.display = "block";
+        loginMessage.className = "error";  });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  //get the appropriate div for deletion message
+  let messageContainer = document.getElementById('deletion-message');
+  
+    console.log("checking for deletion message!");
+    //get the deleted user from local storage
+    const deletedUser = JSON.parse(localStorage.getItem('deletedUser'));
+
+    if(deletedUser)
+    {
+        const message = `User with the name of ${deletedUser.first_name} ${deletedUser.last_name} has had their account deleted by the admin!`;
+
+        messageContainer.textContent = message;
+        messageContainer.style.display = 'block';
+        
+        // Auto-hide after a few seconds
+        setTimeout(() => {
+            messageContainer.style.display = 'none';
+        }, 5000);
+
+        //delete the info from local storage
+        localStorage.removeItem('deletedUser');
+        console.log(localStorage.getItem('deletedUser'));
+    }
+          
+    else
+    {
+        messageContainer.textContent = '';
+        messageContainer.style.display = 'none';
+    }
+
+  });
+ </script>
+  </body>
+ </html>

@@ -4,115 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f8f8f8;
-}
-
-#container-Signup {
-    width: 400px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#header-auth {
-    text-align: center;
-    background-color:blue;
-    color: white;
-    padding: 15px;
-    border-radius: 10px 10px 0 0;
-}
-
-#header-auth h1 {
-    font-size: 24px;
-}
-
-.input-field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 15px 0;
-}
-
-.input-field label {
-    font-weight: bold;
-}
-
-.input-field input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-input[type="file"] {
-    border: none;
-    background-color: #fff;
-    cursor: pointer;
-}
-
-.error-text {
-    color: red;
-    font-size: 12px;
-    display: none;
-}
-
-.form-submit {
-    width: 100%;
-    padding: 10px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.form-submit:hover {
-    background-color: #1a4060;
-}
-
-footer {
-    background-color: black;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-footer p {
-    font-size: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    #container-Signup {
-        width: 90%;
-        padding: 15px;
-    }
-
-    .form-submit {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
-    </style>
+    <link rel="stylesheet" href="./css/signup.css">
+    
 </head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <body>
     <div id="container-Signup">
         <header id="header-auth">
@@ -152,11 +47,10 @@ footer p {
                 </p>
 
                 
-                <!-- Google reCAPTCHA -->
+                 <!-- Google reCAPTCHA -->
+                <div class="g-recaptcha" data-sitekey="6LcBx_AqAAAAAOKmR1Faju5rAR8AxqwtN4Uf2DoG"></div>
 
-                <p class="input-field">
-                    <input type="submit" id="submit" class="form-submit" value="Signup" />
-                </p>
+                <button type="button" id="submit">Submit</button>
                 <p id="signup-message" class="error-text hidden"></p>
 
             </form>
@@ -165,6 +59,95 @@ footer p {
             </div>
         </main>
     </div>
-    <script src="js/signup.js"></script>
+    
 </body>
+<script>
+    let signupForm = document.getElementById("submit");
+    
+    signupForm.addEventListener("click", async (event) => 
+     {
+        event.preventDefault();
+    
+        // Get input values
+        const firstName = document.getElementById("fname").value;
+        
+        const lastName = document.getElementById("lname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("cpassword").value;
+        
+        const recaptchaResponse = grecaptcha.getResponse();
+
+         // Clear previous error messages
+        document.querySelectorAll(".error-text").forEach(el => el.style.display = "none");
+
+        let valid = true;
+
+    // Validate password length
+        if (password.length < 6) {
+            displayMessage("Password must be at least 6 characters long", "error", "error-text-password");
+            valid = false;
+        }
+
+    // Validate passwords match
+        if (password !== confirmPassword) {
+            displayMessage("Passwords do not match", "error", "error-text-cpassword");
+            valid = false;
+        }
+
+        if (!recaptchaResponse) {
+            displayMessage("Please complete the reCAPTCHA", "error");
+            valid = false;
+        }
+    
+        if (!valid) return;
+    
+        const data = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            cpassword: confirmPassword,
+            recaptcha: recaptchaResponse,
+        };
+    
+        console.log("sending data", data);
+    
+        // Set up fetch options
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        };
+    
+       
+    
+        try {
+            const response = await fetch("/signup", options);
+            const json = await response.json();
+            console.log(json);
+    
+            if (json.success) {
+                console.log("Signup successful!");
+                window.location.href = "login.html";
+            } else {
+                displayMessage(json.message || "Signup failed", "error");
+            }
+        } catch (error) {
+            console.error("Error during fetch:", error);
+            displayMessage("An error occurred. Please try again.", "error");
+        }
+        
+    });
+    
+    function displayMessage(message, type) {
+        const messageElement = document.getElementById("signup-message");
+        messageElement.textContent = message;
+        messageElement.style.display = "block";
+        messageElement.className = type;
+    }
+    
+    </script>
 </html>
