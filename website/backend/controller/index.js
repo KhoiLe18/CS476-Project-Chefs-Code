@@ -386,3 +386,16 @@ app.post('/removeFromFavourites', async (req, res) => {
         res.status(500).json({ success: false, message: "Database query failed" });
     }
 });
+
+
+// FOR UPDATE USER INFO
+// Display user info:
+  // first_name
+  // last_name
+  // email
+// Options:
+  // Change first name
+	// Change last name
+	// Change email
+	// Change password
+	// Delete account

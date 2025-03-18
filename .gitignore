@@ -480,6 +480,7 @@ Thumbs.db
 !.dockerignore
 !.editorconfig
 !.env.example
+!.env
 !.git-blame-ignore-revs
 !.gitignore
 !.nvmrc
