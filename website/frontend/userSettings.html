@@ -4,13 +4,42 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>User Settings</title>
    <link rel="stylesheet" href="./css/userSettings.css">
 
 </head>
 
 <body>
-   <h1>User Settings</h1>
+   <!--The sidebar menu button at the navbar-->
+   <nav class="settings-navbar">
+      <a href="index.html" class="back-button">Back to Search</a>
+      <h1>Account Settings</h1>
+   </nav>
+
+   <div class="user-container">
+      <div class="userName">
+         <span class="hello">Hello, </span>
+         <span class="firstName">FirstName</span>
+         <span class="lastName">LastName</span>
+      </div>
+      <div class="userEmail">
+         <p class="currentEdit">Email:</p>
+         <span class="currentEmail">firstLastname@gmail.com</span>
+      </div>
+      <div class="newUserEmail">
+         <label class="currentEdit">Change Email:</label>
+         <input class="newEmail" type="text"></p>
+      </div>
+      <button class="submit-button">Submit</button>
+
+   </div>
+  
+  
+
+</body>
+
+<!--
+ <h1>User Settings</h1>
    
    <div class="user-container">
       <div class="font-medium dark:text-white">
@@ -19,4 +48,4 @@
       </div>
    </div>
 
-</body>
+-->
