@@ -37,10 +37,10 @@
         <mxCell id="ak-yXslXo1z2-yepF_gu-5" value="Search Recipes Seeker" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="430" y="490" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ak-yXslXo1z2-yepF_gu-8" value="View all Recipes Seekers" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="ak-yXslXo1z2-yepF_gu-8" value="View all&lt;div&gt;Recipes Seeker&#39;s accounts&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="430" y="330" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ak-yXslXo1z2-yepF_gu-9" value="Delete Recipes Seeker" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="ak-yXslXo1z2-yepF_gu-9" value="Delete&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Recipes Seeker&#39;s account(s)&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="770" y="400" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="ak-yXslXo1z2-yepF_gu-52" value="Chef&#39;s Code" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=20;" parent="1" vertex="1">
