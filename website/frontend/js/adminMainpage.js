@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!userToDelete) return;
         
         // Find the user name before deletion for the message
-        const userToDeleteInfo = currentUsers.find(user => user.user_id == userToDelete);
+        const fullName = currentUsers.find(user => user.user_id == userToDelete);
         
         // Send delete request to server
         fetch(`/api/users/${userToDelete}`, {
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         //save the user that was deleted into local storage to be accessed in the login.html page
-        localStorage.setItem('deletedUser', JSON.stringify(userToDeleteInfo));
+        localStorage.setItem('deletedUser', JSON.stringify(fullName));
         console.log("The user deleted was ", localStorage.getItem('deletedUser'));
     }
     

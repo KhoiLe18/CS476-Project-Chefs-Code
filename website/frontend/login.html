@@ -114,8 +114,6 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  //get the appropriate div for deletion message
-  let messageContainer = document.getElementById('deletion-message');
   
     console.log("checking for deletion message!");
     //get the deleted user from local storage
@@ -125,17 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
         const message = `User with the name of ${deletedUser.first_name} ${deletedUser.last_name} has had their account deleted by the admin!`;
 
-        messageContainer.textContent = message;
-        messageContainer.style.display = 'block';
-        
-        // Auto-hide after a few seconds
-        setTimeout(() => {
-            messageContainer.style.display = 'none';
-        }, 5000);
-
-        //delete the info from local storage
-        localStorage.removeItem('deletedUser');
-        console.log(localStorage.getItem('deletedUser'));
+        DisplayView(message);
     }
           
     else
@@ -145,6 +133,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   });
+
+  function DisplayView(message)
+  {
+    //get the appropriate div for deletion message
+    let messageContainer = document.getElementById('deletion-message');
+    messageContainer.textContent = message;
+    messageContainer.style.display = 'block';
+        
+    // Auto-hide after a few seconds
+    setTimeout(() => {
+        messageContainer.style.display = 'none';
+    }, 5000);
+
+    //delete the info from local storage
+    localStorage.removeItem('deletedUser');
+    console.log(localStorage.getItem('deletedUser'));
+  }
  </script>
   </body>
  </html>
