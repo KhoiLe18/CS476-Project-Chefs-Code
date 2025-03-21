@@ -5,7 +5,7 @@ const pool = require('../model/db');
 const cors = require('cors');
 
 const app = express();
-app.listen(3000, () => console.log('listening at 3000'));
+app.listen(4000, () => console.log('listening at 3001'));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
@@ -153,9 +153,9 @@ app.delete('/api/users/:userId', async (req, res) => {
         const conn = await pool.getConnection();
         
         // First get the user information before deleting
-        const userQuery = 'SELECT first_name, last_name FROM Users WHERE user_id = ?';
+        const userQuery = 'SELECT first_name, last_name, user_id FROM Users WHERE user_id = ?';
         const userInfo = await conn.query(userQuery, [userId]);
-        //console.log("USER INFO IS ", userInfo);
+        console.log("USER INFO IS ", userInfo);
         
         if (userInfo.length === 0) {
             conn.release();
@@ -164,8 +164,14 @@ app.delete('/api/users/:userId', async (req, res) => {
         
         // Store user info
         const fullName = `${userInfo[0].first_name} ${userInfo[0].last_name}`;
+        const userid = userInfo[0].user_id;
+        //console.log(userid, " is the user id!!!");
+
+        //delete the user's favourited recipes from the favourites table
+        const deleteFavouritesQuery = 'DELETE FROM favourites WHERE user_id = ?';
+        const results = await conn.query(deleteFavouritesQuery, [userId]);
         
-        // Delete the user
+        // Once the favourites associated with this user are gone, we can delete the user
         const deleteQuery = 'DELETE FROM Users WHERE user_id = ?';
         const result = await conn.query(deleteQuery, [userId]);
         conn.release();
@@ -394,8 +400,4 @@ app.post('/removeFromFavourites', async (req, res) => {
   // last_name
   // email
 // Options:
-  // Change first name
-	// Change last name
 	// Change email
-	// Change password
-	// Delete account
