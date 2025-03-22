@@ -395,6 +395,7 @@ app.post('/removeFromFavourites', async (req, res) => {
 
 
 // FOR UPDATE USER INFO
+app.post('/updateUser', async (req, res))
 // Display user info:
   // first_name
   // last_name
