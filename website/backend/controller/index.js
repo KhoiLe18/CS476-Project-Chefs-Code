@@ -3,9 +3,10 @@ const fetch = require('node-fetch');
 const path = require('path');
 const pool = require('../model/db');
 const cors = require('cors');
+const ports = 4000;
 
 const app = express();
-app.listen(4000, () => console.log('listening at 3001'));
+app.listen(ports, () => console.log('listening at ', ports));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page

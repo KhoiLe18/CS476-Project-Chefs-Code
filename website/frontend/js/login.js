@@ -58,7 +58,3 @@ loginButton.addEventListener("click", async (event) => {
     console.error("Error during fetch:", error);
   });
 });
-
-
-
-
