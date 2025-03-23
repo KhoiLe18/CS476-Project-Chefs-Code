@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+// Display user's first name, last name, and current email
+document.addEventListener('DOMContentLoaded', function() 
+{
 	// Get existing info
 	const firstName = document.getElementById('fname');
 	const lastName = document.getElementById('lname');
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		body: JSON.stringify(requestData)
 	}
 
+	//Display user info
 	fetch('/getUserInfo', options).then(async response => {
 		const json = await response.json();
 
@@ -35,17 +38,45 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
+// Change user email
 let subButton = document.getElementById("subButton");
-
 subButton.addEventListener("click", async (event) => 
 {
 	event.preventDefault();
-
-	// Get user ID
-	const userID = localStorage.getItem("userId");
-
-	// Get input values
 	const newEmail = document.getElementById("newEmail").value;
+
 	console.log(newEmail);
+	console.log(localStorage.getItem("userId"));
+
+	const userID = localStorage.getItem('userId');
+
 	console.log(userID);
+
+	const requestData = {
+			newEmail: email,
+			userID: userID
+	};
+
+	const options = {
+			method: "POST",
+			headers: {
+					"Content-Type": "application/json",
+			},
+			body: JSON.stringify(requestData)
+	};
+
+	fetch('/updateUser', options).then(async response => {
+			const json = await response.json();
+
+			//console.log(json);
+
+			if(json.success)
+			{
+					alert("Email updated successfully!");
+			}
+			else
+			{
+					alert("Error updating email: " + json.message);
+			}
+	});
 });
