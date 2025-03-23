@@ -63,8 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const tr = document.createElement('tr');
             
             tr.innerHTML = `
-                <td>${user.user_id}</td>
-                <td><img src="${user.profile_picture || 'img/default-profile.png'}" alt="Profile" class="user-profile-pic"></td>
                 <td>${user.first_name}</td>
                 <td>${user.last_name}</td>
                 <td>${user.email}</td>
