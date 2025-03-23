@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const cuisine = document.querySelector(".dropdown:first-of-type").value;
         const dietary = document.querySelector(".dropdown:last-of-type").value;
         
-        console.log("Searching for recipes with:");
-        console.log("Ingredient:", ingredient);
-        console.log("Cuisine Type:", cuisine);
-        console.log("Dietary Restriction:", dietary);
+        //console.log("Searching for recipes with:");
+        //console.log("Ingredient:", ingredient);
+        //console.log("Cuisine Type:", cuisine);
+        //console.log("Dietary Restriction:", dietary);
         
         // Placeholder for fetching and displaying recipes
         document.querySelector(".results-container").innerHTML = `<p>Searching recipes with ${ingredient}, ${cuisine}, ${dietary}...</p>`;
@@ -77,7 +77,7 @@ searchButton.addEventListener("click", async (event) => {
         // Clear loading indicator
         resultsContainer.innerHTML = "";
         
-        console.log(json.results);
+        //console.log(json.results);
 
         // if there are no matching recipes, print out the following message
         if (!json?.results || json.results.length === 0) {
@@ -135,10 +135,10 @@ searchButton.addEventListener("click", async (event) => {
                     try {
                         const response = await fetch('/viewRecipe', options);
                         const json = await response.json();
-                        console.log("Here are the results!");
-                        console.log(json.instructions);
-                        console.log(json.ingredient);
-                        console.log(json.title);
+                        //console.log("Here are the results!");
+                        //console.log(json.instructions);
+                        //console.log(json.ingredient);
+                        //console.log(json.title);
 
                         // Save recipe data to localStorage so the details page can access it
                         localStorage.setItem('recipeDetails', JSON.stringify(json));
