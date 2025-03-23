@@ -410,7 +410,10 @@ app.post('/getUserInfo', async (req, res) => {
 			conn.release();
 
 			if (rows.length > 0) {
-					res.json({ success: true, firstName: rows[0].first_name, lastName: rows[0].last_name, email: rows[0].email });
+					res.json({ success: true, 
+										 firstName: rows[0].first_name, 
+										 lastName: rows[0].last_name, 
+										 email: rows[0].email });
 			} 
 			
 			else {
