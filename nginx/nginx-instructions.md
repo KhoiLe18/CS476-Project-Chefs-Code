@@ -3,7 +3,7 @@
 1. ``cd /var/www/html``
 2. ``sudo git clone https://github.com/KhoiLe18/CS476-Project-Chefs-Code.git``
 3. ``sudo chmod -R 755 /var/www/html/CS476-Project-Chefs-Code``
-4. ``sudo chown -R $USER:$USER 755 /var/www/html/CS476-Project-Chefs-Code``
+4. ``sudo chown -R $USER:$USER /var/www/html/CS476-Project-Chefs-Code``
 
 ## Install NGINX
 1. ``sudo apt install nginx``
