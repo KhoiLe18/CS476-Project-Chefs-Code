@@ -204,6 +204,6 @@ function validateSignup(event) {
 		event.preventDefault();
 	}
 	else {
-		console.log("validation successful, sending data to the server");
+		//console.log("validation successful, sending data to the server");
 	}
 }

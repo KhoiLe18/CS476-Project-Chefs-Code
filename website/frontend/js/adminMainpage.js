@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //save the user that was deleted into local storage to be accessed in the login.html page
         localStorage.setItem('deletedUser', JSON.stringify(userToDeleteInfo));
-        console.log("The user deleted was ", localStorage.getItem('deletedUser'));
+        //console.log("The user deleted was ", localStorage.getItem('deletedUser'));
     }
     
     function handleLogout() {

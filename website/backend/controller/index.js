@@ -3,9 +3,10 @@ const fetch = require('node-fetch');
 const path = require('path');
 const pool = require('../model/db');
 const cors = require('cors');
+const ports = 4000;
 
 const app = express();
-app.listen(4000, () => console.log('listening at 3001'));
+app.listen(ports, () => console.log('listening at port', ports));
 app.use(express.json());
 
 // Temporarily set adminPage.html as the default page
@@ -399,5 +400,65 @@ app.post('/removeFromFavourites', async (req, res) => {
   // first_name
   // last_name
   // email
+app.post('/getUserInfo', async (req, res) => {
+	const userId = req.body.userId;
+
+	try {
+			const conn = await pool.getConnection();
+			const query = "SELECT first_name, last_name, email FROM Users WHERE user_id = ?";
+			const rows = await conn.query(query, [userId]);
+			conn.release();
+
+			if (rows.length > 0) {
+					res.json({ success: true, 
+										 firstName: rows[0].first_name, 
+										 lastName: rows[0].last_name, 
+										 email: rows[0].email });
+			} 
+			
+			else {
+					res.json({ success: false, message: "User not found" });
+			}
+
+	} catch (err) {
+			console.error(err);
+			res.status(500).json({ success: false, message: "Database query failed" });
+	}
+});
+
 // Options:
 	// Change email
+app.post('/updateUser', async (req, res) => {    
+	const newEmail = req.body.newEmail;
+	//console.log(newEmail);
+
+	const userID = req.body.userId;
+	//console.log(userID);
+
+	try {
+			const conn = await pool.getConnection();
+			const unique_query = "SELECT * FROM Users WHERE email = ?";
+			const unique_results = await conn.query(unique_query, [newEmail]);
+
+			if(unique_results.length > 0)
+			{
+					conn.release();
+					return res.status(400).json({ success: false, message: "Email already exists" });
+			}
+
+			const query = "UPDATE Users SET email = ? WHERE user_id = ?";
+			const result = await conn.query(query, [email, userID]);
+			conn.release();
+			console.log(result);
+
+			if (result.affectedRows > 0) {
+					res.json({ success: true, message: "User updated successfully" });
+			} else {
+					res.json({ success: false, message: "User not found" });
+			}
+
+	} catch (err) {
+			console.error(err);
+			res.status(500).json({ success: false, message: "Database query failed" });
+	}
+});

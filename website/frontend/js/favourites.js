@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function() {
 
-    console.log("Favourites page loaded! User logged in is ", localStorage.getItem("userId"));
+    //console.log("Favourites page loaded! User logged in is ", localStorage.getItem("userId"));
 
     // Get the user's favourite recipes
     const userId = JSON.parse(localStorage.getItem("userId"));
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
 
         const recipes = await response.json();
-        console.log("Favourite Recipes:", recipes);
+        //console.log("Favourite Recipes:", recipes);
 
         const favouritesList = document.querySelector(".listofjoke");
         favouritesList.innerHTML = ""; // Clear existing content
@@ -104,7 +104,7 @@ async function removeFromFavourites(recipeId) {
         });
 
         const result = await response.json();
-        console.log("Removed from favourites:", result);
+        //console.log("Removed from favourites:", result);
     } catch (error) {
         console.error("Error removing from favourites:", error);
     }

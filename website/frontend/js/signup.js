@@ -11,7 +11,7 @@ signupForm.addEventListener("click", async (event) =>
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("cpassword").value;
-    console.log(lastName);
+    //console.log(lastName);
 
     // Validate password match
     /*
@@ -29,7 +29,7 @@ signupForm.addEventListener("click", async (event) =>
         cpassword: confirmPassword
     };
 
-    console.log("sending data", data);
+    //console.log("sending data", data);
 
     // Set up fetch options
     const options = {
@@ -41,7 +41,7 @@ signupForm.addEventListener("click", async (event) =>
     };
 
     fetch('/signup', options).then(async response => {
-        console.log("Info Sent!!!");
+        //console.log("Info Sent!!!");
     });
     {
 
@@ -50,10 +50,10 @@ signupForm.addEventListener("click", async (event) =>
     try {
         const response = await fetch("/signup", options);
         const json = await response.json();
-        console.log(json);
+        //console.log(json);
 
         if (json.success) {
-            console.log("Signup successful!");
+            //console.log("Signup successful!");
             window.location.href = "index.html";
         } else {
             displayMessage(json.message || "Signup failed", "error");

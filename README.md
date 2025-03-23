@@ -34,9 +34,3 @@ This role has the ability to moderate other users by deleting user accounts. Thi
   - **Robustness:** When searching for a non-existant user, the search engine will provide an appropriate error message. 
   - **Correctness:** When the admin selects a user to delete from the GUI, the same user will be deleted from the database.
   - **Time-Efficiency:** Deletion happens in real-time.
-
-
-## 6  Software design: 
-### (a) Two benefits of MVC for your specific application
-  - Makes the project more scalable and maintainable: MVC divides the application into 3 layers (Model, view, controller) which makes it easier to maintain, recondition, or add and remove views in one part of the system without affecting the other. This will allow the developers to work on the front end (HTML, CSS, JavaScript) and back end (Node.js, database) simultaneously without any sort of clashes. Additionally, this makes the product more reusable for different views, improving the overall efficiency and effectiveness of the product.
-  - This increases stability and improves the user experience: it ensures that the recipe data, the filter function to list down ingredients, and the dietary restrictions are precise for all of the views. Ensures that the user interaction with the system is spontaneous and provides correct results. To maintain an effortless user experience, ensure that the UI remains consistent across the pages and that changing any particular view does not affect the overall user experience.
