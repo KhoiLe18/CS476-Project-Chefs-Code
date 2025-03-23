@@ -428,4 +428,37 @@ app.post('/getUserInfo', async (req, res) => {
 
 // Options:
 	// Change email
-//app.post('/updateUser', async (req, res) => {});
+app.post('/updateUser', async (req, res) => {    
+	const newEmail = req.body.newEmail;
+	//console.log(newEmail);
+
+	const userID = req.body.userId;
+	//console.log(userID);
+
+	try {
+			const conn = await pool.getConnection();
+			const unique_query = "SELECT * FROM Users WHERE email = ?";
+			const unique_results = await conn.query(unique_query, [newEmail]);
+
+			if(unique_results.length > 0)
+			{
+					conn.release();
+					return res.status(400).json({ success: false, message: "Email already exists" });
+			}
+
+			const query = "UPDATE Users SET email = ? WHERE user_id = ?";
+			const result = await conn.query(query, [email, userID]);
+			conn.release();
+			console.log(result);
+
+			if (result.affectedRows > 0) {
+					res.json({ success: true, message: "User updated successfully" });
+			} else {
+					res.json({ success: false, message: "User not found" });
+			}
+
+	} catch (err) {
+			console.error(err);
+			res.status(500).json({ success: false, message: "Database query failed" });
+	}
+});
