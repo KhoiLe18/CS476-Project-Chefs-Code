@@ -8,7 +8,7 @@
 ## Install NGINX
 1. ``sudo apt install nginx``
 2. Move the nginx config file (chefs-code) to /etc/nginx/sites-available
-3. Comment out everything in the default file in /etc/nginx/sites-available
+3. Comment out everything in the `default` file in /etc/nginx/sites-available
 4. ``sudo ln -s /etc/nginx/sites-available/chefs-code /etc/nginx/sites-enabled/``
 5. ``sudo nginx -t``
 6. ``sudo systemctl restart nginx``
