@@ -396,10 +396,31 @@ app.post('/removeFromFavourites', async (req, res) => {
 
 
 // FOR UPDATE USER INFO
-app.post('/updateUser', async (req, res))
 // Display user info:
+app.post('/getUserInfo', async (req, res) => {
+	const userID = req.body.userID;
+
+	try {
+		const conn = await pool.getConnection();
+		const query = "SELECT first_name, last_name, email FROM User WHERE user_id = ?";
+		const rows = await conn.query(query, [userID]);
+		conn.release();
+
+		if (rows.length > 0) {
+			res.json({success: true, firstName: rows[0].firstName, lastName: rows[0].last_name, email: rows[0].email})
+		}
+
+		else {
+			res.json({success: false, message: "User not found"})
+		}
+	} catch (err) {
+			console.error(err);
+			res.status(500).json({success: false, message: "Database query failed"})
+	}
+});
   // first_name
   // last_name
   // email
 // Options:
 	// Change email
+//app.post('/updateUser', async (req, res) => {});
