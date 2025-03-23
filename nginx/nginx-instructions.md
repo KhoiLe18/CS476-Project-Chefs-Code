@@ -22,10 +22,10 @@
 
 ## Result
 - You should see something like this in the console
-``[nodemon] 3.1.9
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching path(s): *.*
-[nodemon] watching extensions: js,mjs,cjs,json
-[nodemon] starting `node index.js`
+``[nodemon] 3.1.9  
+[nodemon] to restart at any time, enter `rs`  
+[nodemon] watching path(s): *.*  
+[nodemon] watching extensions: js,mjs,cjs,json  
+[nodemon] starting `node index.js`  
 listening at port 4000``
 - The website should be accessible on port 80 via nginx or directly via port 4000
