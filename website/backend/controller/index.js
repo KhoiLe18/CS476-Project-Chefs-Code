@@ -393,7 +393,64 @@ app.post('/removeFromFavourites', async (req, res) => {
     }
 });
 
+app.post('/updateUser', async (req, res) => {    
+    const email = req.body.newEmail;
+    //console.log(email);
 
+    const userId = req.body.userId;
+    //console.log(userId);
+
+    try {
+        const conn = await pool.getConnection();
+        const unique_query = "SELECT * FROM Users WHERE email = ?";
+        const unique_results = await conn.query(unique_query, [email]);
+
+        if(unique_results.length > 0)
+        {
+            conn.release();
+            return res.status(400).json({ success: false, message: "Email already exists" });
+        }
+
+        const query = "UPDATE Users SET email = ? WHERE user_id = ?";
+        const result = await conn.query(query, [email, userId]);
+        conn.release();
+        console.log(result);
+
+        if (result.affectedRows > 0) {
+            res.json({ success: true, message: "User updated successfully" });
+        } else {
+            res.json({ success: false, message: "User not found" });
+        }
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});
+
+
+app.post('/getUser', async (req, res) => {
+    const userId = req.body.userId;
+
+    try {
+        const conn = await pool.getConnection();
+        const query = "SELECT first_name, last_name, email FROM Users WHERE user_id = ?";
+        const rows = await conn.query(query, [userId]);
+        conn.release();
+
+        if (rows.length > 0) {
+            res.json({ success: true, firstName: rows[0].first_name, lastName: rows[0].last_name, email: rows[0].email });
+        } 
+        
+        else {
+            res.json({ success: false, message: "User not found" });
+        }
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: "Database query failed" });
+    }
+});
 // FOR UPDATE USER INFO
 // Display user info:
   // first_name
