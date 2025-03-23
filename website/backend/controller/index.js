@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const path = require('path');
 const pool = require('../model/db');
 const cors = require('cors');
-const ports = 4000;
+const ports = 3000;
 
 const app = express();
 app.listen(ports, () => console.log('listening at port', ports));
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
 app.use(cors());
-const RECAPTCHA_SECRET_KEY = "6LcBx_AqAAAAACo903p3VZdmdWw7nx6M4QJYfX-9";
+const RECAPTCHA_SECRET_KEY = "6Lc6zf0qAAAAANO9GaDFaa_cZo5cgI4M2Sx_Gb5C";
 
 //FOR FETCHING RECIPE MATCHES ACCORDING TO INPUTTED INGREDIENTS, CUISINES, AND DIETARY RESTRICTIONS
 app.post('/api', async (request, response) => {
