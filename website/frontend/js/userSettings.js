@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', function()
 	const currentEmail = document.getElementById('currEmail');
 	
 	// Get user ID
-	const userID = localStorage.getItem("userId");
+	const userID = JSON.parse(localStorage.getItem("userId"));
 
-	//console.log(firstName, lastName, currentEmail, userID);
+	console.log(firstName, lastName, currentEmail, userID);
 
 	const requestData = {
-		userID: userID
+		userId: userID
 	};
 
 	const options = {
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function()
 	//Display user info
 	fetch('/getUserInfo', options).then(async response => {
 		const json = await response.json();
+		console.log(json);
 
 		if(json.success) {
 			firstName.textContent = json.firstName;
@@ -45,15 +46,14 @@ subButton.addEventListener("click", async (event) =>
 	event.preventDefault();
 	const newEmail = document.getElementById("newEmail").value;
 
-	//console.log(newEmail);
 	//console.log(localStorage.getItem("userId"));
 
 	const userID = localStorage.getItem('userId');
 
-	//console.log(userID);
+	console.log(userID);
 
 	const requestData = {
-			newEmail: email,
+			newEmail: newEmail,
 			userID: userID
 	};
 

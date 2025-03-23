@@ -402,7 +402,7 @@ app.post('/removeFromFavourites', async (req, res) => {
   // email
 app.post('/getUserInfo', async (req, res) => {
 	const userId = req.body.userId;
-
+    console.log(userId);
 	try {
 			const conn = await pool.getConnection();
 			const query = "SELECT first_name, last_name, email FROM Users WHERE user_id = ?";
@@ -430,10 +430,10 @@ app.post('/getUserInfo', async (req, res) => {
 	// Change email
 app.post('/updateUser', async (req, res) => {    
 	const newEmail = req.body.newEmail;
-	//console.log(newEmail);
+	console.log(newEmail);
 
-	const userID = req.body.userId;
-	//console.log(userID);
+	const userID = req.body.userID;
+	console.log(userID);
 
 	try {
 			const conn = await pool.getConnection();
@@ -447,7 +447,7 @@ app.post('/updateUser', async (req, res) => {
 			}
 
 			const query = "UPDATE Users SET email = ? WHERE user_id = ?";
-			const result = await conn.query(query, [email, userID]);
+			const result = await conn.query(query, [newEmail, userID]);
 			conn.release();
 			console.log(result);
 
