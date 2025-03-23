@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (recipeDetails && userId) 
         {
             //test to make sure the right ids are being sent
-            console.log("Recipe ID:", recipeDetails.id);
-            console.log("User ID:", userId);
+            //console.log("Recipe ID:", recipeDetails.id);
+            //console.log("User ID:", userId);
 
             //make a call to the backend end point for adding the recipe to the user's favourite page
             const requestData = {

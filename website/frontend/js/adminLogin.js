@@ -5,10 +5,10 @@ loginButton.addEventListener("click", async (event) => {
     event.preventDefault();
     // get input in username input bar, and save it in variable username
     const username = document.getElementById("uname").value;
-    //console.log(username);
+    ////console.log(username);
     // get input from password search bar
     const password = document.getElementById("pwd").value;
-    //console.log(password);
+    ////console.log(password);
 
     // put all input into an object to send away to the backend api recipe fetch function
     const requestData = {
@@ -16,7 +16,7 @@ loginButton.addEventListener("click", async (event) => {
         password: password
     };
 
-    // console.log(requestData)
+    // //console.log(requestData)
     // set up the options for the post method, which requests data to our end point in the backend called /admiLogin in index.js
     const options = {
         method: "POST",
@@ -25,21 +25,21 @@ loginButton.addEventListener("click", async (event) => {
         },
         body: JSON.stringify(requestData)
     };
-    //console.log("Is it working here...?");
+    ////console.log("Is it working here...?");
     fetch('/adminLogin', options).then(async response => {
-    console.log("Information sent! We should have a response...");
+    //console.log("Information sent! We should have a response...");
 
     //Get the response in json format and save it into variable json. 
     //The response will let us know if there was a username + password combo match in our database! (check backend for this logic)
     const json = await response.json();
-    console.log(json);  // Log the entire response object first to see what we're working with
+    //console.log(json);  // Log the entire response object first to see what we're working with
     
     // Handle the response appropriately
     //if success was sent back as true, then a match was found! Redirect admin user to adminMainpage.html
     if (json.success) 
     {
       // Redirect or update UI for successful login
-      console.log("Login successful!");
+      //console.log("Login successful!");
       window.location.href = "adminMainpage.html";
     } 
     
@@ -47,7 +47,7 @@ loginButton.addEventListener("click", async (event) => {
     else 
     {
       // Show error message
-      console.log("Login failed:", json.message);
+      //console.log("Login failed:", json.message);
 
       const loginMessage = document.getElementById("login-message");
             loginMessage.textContent = json.message || "Invalid credentials. Please try again.";  // Display the error message

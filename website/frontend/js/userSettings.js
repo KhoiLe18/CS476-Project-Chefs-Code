@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function()
 	// Get user ID
 	const userID = localStorage.getItem("userId");
 
-	console.log(firstName, lastName, currentEmail, userID);
+	//console.log(firstName, lastName, currentEmail, userID);
 
 	const requestData = {
 		userID: userID
@@ -45,12 +45,12 @@ subButton.addEventListener("click", async (event) =>
 	event.preventDefault();
 	const newEmail = document.getElementById("newEmail").value;
 
-	console.log(newEmail);
-	console.log(localStorage.getItem("userId"));
+	//console.log(newEmail);
+	//console.log(localStorage.getItem("userId"));
 
 	const userID = localStorage.getItem('userId');
 
-	console.log(userID);
+	//console.log(userID);
 
 	const requestData = {
 			newEmail: email,
@@ -68,7 +68,7 @@ subButton.addEventListener("click", async (event) =>
 	fetch('/updateUser', options).then(async response => {
 			const json = await response.json();
 
-			//console.log(json);
+			////console.log(json);
 
 			if(json.success)
 			{
